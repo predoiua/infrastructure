@@ -1,0 +1,41 @@
+
+
+** Install
+
+
+*** Cent OS 6 
+
+See https://docs.docker.com/installation/centos/
+
+64 bits
+su -c 'rpm -Uvh http://epel.mirror.constant.com/6/x86_64/epel-release-6-8.noarch.rpm'
+sudo yum install docker-io
+-- start it
+sudo service docker start
+-- start at server boot
+
+
+** Usefull
+
+*** Remove old contains
+
+docker ps -a | awk '{print $1}' | xargs docker rm {} \;
+or
+docker rm `docker ps -aq`
+
+
+*** Launch Interactive container
+
+docker run -t -i ubuntu /bin/bash
+
+*** Background container
+
+-- launch a container and run some task
+docker run -d ubuntu /bin/bash -c "while true; do echo hello world; sleep 1; done"
+
+-- get container id
+docker ps
+-- view output
+sudo docker logs angry_mccarthy
+-- stop it
+sudo docker stop angry_mccarthy
