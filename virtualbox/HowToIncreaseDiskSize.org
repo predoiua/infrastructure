@@ -1,0 +1,30 @@
+
+
+** Add more space Linux  ( Centos 6 )
+
+Good guide:
+http://www.tecmint.com/extend-and-reduce-lvms-in-linux/
+
+Steps overview:
+Add a new 20G vdi, attach it in VirtualBox storage section
+
+fdisk /dev/sdb -> create new partitiion ( n ( primary ,.. ) -> w )
+pvcreate /dev/sdb1
+pvs  -> check if volume was created ok
+vgs
+vgextend VolGroup /dev/sdb1  -> "VolGroup" is the name returned by previous command
+vgs  -> check if volume looks ok
+pvscan
+vgdisplay
+lvdisplay
+lvextend -l +5117 /dev/VolGroup/lv_root -> 5117 = free space in vgdisplay, /dev/... = volume name returned by lvdisplay
+resize2fs /dev/VolGroup/lv_root
+df -h -> last check
+
+** Other : Not really working
+
+--VBoxManage modifyhd centos65-disk1.vdi --resize 15360
+--VBoxManage clonehd "centos65-disk1.vmdk" "cloned.vdi" --format vdi
+--VBoxManage modifyhd "cloned.vdi" --resize 20480
+--VBoxManage clonehd "cloned.vdi" "resized.vmdk" --format vmdk
+
