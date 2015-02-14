@@ -1,0 +1,26 @@
+
+* Oracle Java 8 on CeontOS 7 64
+Details at:
+http://www.unixmen.com/install-oracle-java-jdk-8-centos-76-56-4/
+
+1. Download rmp from
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+sudo rpm -ivh jdk-8u31-linux-i586.rpm 
+
+
+2. Edit .bashrc
+
+export JAVA_HOME=/usr/java/jdk1.8.0_31/
+export PATH=$PATH:$JAVA_HOME
+
+
+3. Set alternatives
+
+alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_31/jre/bin/java 20000
+alternatives --install /usr/bin/jar jar /usr/java/jdk1.8.0_31/bin/jar 20000
+alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.0_31/bin/javac 20000
+alternatives --install /usr/bin/javaws javaws /usr/java/jdk1.8.0_31/jre/bin/javaws 20000
+alternatives --set java /usr/java/jdk1.8.0_31/jre/bin/java
+alternatives --set jar /usr/java/jdk1.8.0_31/bin/jar
+alternatives --set javac /usr/java/jdk1.8.0_31/bin/javac 
+alternatives --set javaws /usr/java/jdk1.8.0_31/jre/bin/javaws

@@ -18,7 +18,13 @@ pvscan
 vgdisplay
 lvdisplay
 lvextend -l +5117 /dev/VolGroup/lv_root -> 5117 = free space in vgdisplay, /dev/... = volume name returned by lvdisplay
-resize2fs /dev/VolGroup/lv_root
+
+CentOS 6
+resize2fs /dev/VolGroup/lv_root -> this works only with ext2-4
+CentOS 7
+Use xfs fs by default ( See: http://stackoverflow.com/questions/13362910/trying-to-resize2fs-eb-volume-fails )
+xfs_growfs /dev/VolGroup/lv_root
+
 df -h -> last check
 
 ** Other : Not really working
