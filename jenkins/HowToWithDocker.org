@@ -1,0 +1,6 @@
+
+* Running Jenkins inside Docker container
+
+mkdir /home/vagrant/data/jenkins -p
+chown 102 /home/vagrant/data/jenkins
+docker run -p 8080:8080 -v /your/vagrant/data/jenkins:/var/jenkins_home jenkins 

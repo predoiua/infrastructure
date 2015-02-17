@@ -13,7 +13,15 @@ sudo yum install docker-io
 -- start it
 sudo service docker start
 -- start at server boot
+sudo chkconfig docker on
 
+*** CentOS 7
+http://wiki.centos.org/Cloud/Docker
+
+-- start it
+sudo systemctl start docker
+-- start at service boot
+sudo systemctl enable docker
 
 ** Usefull
 
@@ -39,3 +47,7 @@ docker ps
 sudo docker logs angry_mccarthy
 -- stop it
 sudo docker stop angry_mccarthy
+
+
+*** Connect to a conatiner running as demon
+docker run -p 8080:8080 -v /home/vagrant/data/jenkins:/var/jenkins_home jenkins 
