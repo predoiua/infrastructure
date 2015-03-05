@@ -1,6 +1,28 @@
+* Compile Maven project
 
-* Running Jenkins inside Docker container
+** Using Jenkins docker image
 
-mkdir /home/vagrant/data/jenkins -p
-chown 102 /home/vagrant/data/jenkins
-docker run -p 8080:8080 -v /your/vagrant/data/jenkins:/var/jenkins_home jenkins 
+*** Create a working folder
+mkdir -p ~/jenkins_work
+chmod 0777 ~/jenkins_work
+
+*** Start Jenkins image
+docker run -p 8080:8080 -v ~/jenkins_work:/var/jenkins_home jenkins
+
+***  Configure Jenkins
+
+Browser to http://localhost:8080
+**** GitHub integration
+-> Manage Jenkins
+-> Manage plugins
+-> install : "GitHub plugin" -> "Download now and install after restart"
+Restart Jenkins
+
+**** Configure Maven
+-> Manage Jenkins
+-> Configure Systems
+JDK - set 
+
+Git -
+
+Maven - add maven, download from apache

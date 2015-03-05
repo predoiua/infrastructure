@@ -50,4 +50,11 @@ sudo docker stop angry_mccarthy
 
 
 *** Connect to a conatiner running as demon
+
 docker run -p 8080:8080 -v /home/vagrant/data/jenkins:/var/jenkins_home jenkins 
+
+docker exec -it [container-id] /bin/bash
+
+*** Shutdown a daemon 
+
+docker stop `docker ps -q`
