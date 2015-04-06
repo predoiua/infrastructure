@@ -1,0 +1,14 @@
+
+* set
+set -e = exit ( stop )  on error ( !=0 return )
+aka: set -o  errexit 
+
+set -x = for debug. print before execute
+aka: set -o xtrace
+
+set -u = stop on env variable not set
+aka: set -o nounset
+
+Add ": ${VAR}" at the beginning for variable check
+ 
+

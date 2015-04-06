@@ -1,0 +1,9 @@
+
+* Spring boot
+
+run
+mvn spring-boot:run
+is same as:
+mvn package
+java -jar target/xxx.jar
+
