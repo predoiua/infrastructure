@@ -6,3 +6,6 @@ vi -version | grep syntax
 if -syntax => 
 yum install vim-enhanced
 alias vi=vim
+
+in vi:color desert
+
