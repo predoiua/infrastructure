@@ -1,4 +1,7 @@
 
+** Shared folder
+
+sudo usermod -aG vboxsf $(whoami)
 
 ** Add more space Linux  ( Centos 6 )
 

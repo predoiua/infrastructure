@@ -1,0 +1,8 @@
+
+* vi color
+
+vi -version | grep syntax
+
+if -syntax => 
+yum install vim-enhanced
+alias vi=vim
