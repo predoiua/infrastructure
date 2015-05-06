@@ -9,3 +9,7 @@ alias vi=vim
 
 in vi:color desert
 
+* systax
+
+:set syntax=sh
+:set syntax=off
