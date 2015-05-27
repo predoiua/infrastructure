@@ -9,7 +9,35 @@ alias vi=vim
 
 in vi:color desert
 
-* systax
+* syntax
 
 :set syntax=sh
-:set syntax=off
+:set syn=off
+
+* useful
+
+- save and run current script
+:map ,t :w \|:!bash %
+
+- comment lines
+ctrl-v 4j I # esc
+
+- execute replace on selection
+:5,10s/old/new/g | 14,18 &&
+
+* whitespace
+
+set list
+set nolist
+
+Optional :
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+or
+set expandtab ts=4 sw=4 ai
+

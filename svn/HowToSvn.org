@@ -1,0 +1,12 @@
+
+* Useful commands
+
+
+-- checkout a branch/trunk
+svn checkout svn://localhost/xx ~/build/xx
+
+-- update to latest version
+cd ~/build/xx
+svn up .
+
+

@@ -1,0 +1,4 @@
+
+- Get rid of local modification
+
+git reset --hard HEAD
