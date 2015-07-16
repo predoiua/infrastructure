@@ -1,0 +1,14 @@
+
+
+* useful
+
+if everything goes wrong:
+screen -list
+screen -X -S [session] quit
+
+detach
+ctrt-t d
+
+attach
+screen -x
+screen -dRR

@@ -10,3 +10,6 @@ cd ~/build/xx
 svn up .
 
 
+-- checkout a revision
+
+svn up -rXXXX

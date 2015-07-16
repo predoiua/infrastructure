@@ -58,3 +58,7 @@ docker exec -it [container-id] /bin/bash
 *** Shutdown a daemon 
 
 docker stop `docker ps -q`
+
+*** Build form Dockefile
+
+docker build -t predoiua/adhoc_be .
