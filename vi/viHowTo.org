@@ -41,3 +41,10 @@ set expandtab
 or
 set expandtab ts=4 sw=4 ai
 
+* language
+
+set spell spelllang=en_us
+set nospell
+]s and [s move to next/previous misspell word
+z= suggest alternatives
+
