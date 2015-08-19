@@ -7,7 +7,7 @@ mkdir -p ~/jenkins_work
 chmod 0777 ~/jenkins_work
 
 *** Start Jenkins image
-docker run -p 8080:8080 -v ~/jenkins_work:/var/jenkins_home jenkins
+docker run -p 8080:8080 -v ~/data/jenkins:/var/jenkins_home jenkins
 
 ***  Configure Jenkins
 
