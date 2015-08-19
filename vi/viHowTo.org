@@ -25,6 +25,11 @@ ctrl-v 4j I # esc
 - execute replace on selection
 :5,10s/old/new/g | 14,18 &&
 
+- insert date
+:.!date
+
+- not allow to save
+:w !sudo tee %
 * whitespace
 
 set list

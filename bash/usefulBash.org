@@ -9,6 +9,10 @@ aka: set -o xtrace
 set -u = stop on env variable not set
 aka: set -o nounset
 
+* script
+
+???
 Add ": ${VAR}" at the beginning for variable check
- 
+
+
 
