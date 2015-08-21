@@ -24,8 +24,17 @@ ctrl-v 4j I # esc
 
 - execute replace on selection
 :5,10s/old/new/g | 14,18 &&
+:.,10s/^/#comment/gc
+:g/#comment/d
 
-- insert date
+- using marks
+m a
+m b
+'a
+'b
+:'a'b d # this will delete everything between marks a and b
+
+- insert from OS commands
 :.!date
 
 - not allow to save
@@ -50,6 +59,7 @@ set expandtab ts=4 sw=4 ai
 
 set spell spelllang=en_us
 set nospell
+
 ]s and [s move to next/previous misspell word
 z= suggest alternatives
 

@@ -8,11 +8,18 @@ aka: set -o xtrace
 
 set -u = stop on env variable not set
 aka: set -o nounset
+Add ": ${VAR}" at the beginning for variable check
+: is a command that does nothing and ingnores its argument. Otherwise string form VAR will try to be executed.
+I think the following command is better:
+${parameter:?err_msg}
 
 * script
 
-???
-Add ": ${VAR}" at the beginning for variable check
+initialize a variable with
+: ${A:=hello} #is same as A=${A:-hello}
+echo $A #=> hello
+http://stackoverflow.com/questions/4437573/bash-assign-default-value
+
 
 
 
