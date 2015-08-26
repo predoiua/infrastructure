@@ -1,0 +1,10 @@
+
+- Split mp3 files
+http://superuser.com/questions/5315/is-there-an-easy-way-to-split-mp3-files
+
+This is the commandline I usually use to split a podcast into 6 minute segments:
+
+mp3splt podcast.mp3 -g %[@N=0,@o] -o "@n @f" -t 6.0
+-t 6.0: split every 6 minutes
+-g %[@N=0,@o]: for every section use the original tags, but update the track number starting from 0.
+-o "@n @f": The output file name should be the original filename with the track number tacked on in front.

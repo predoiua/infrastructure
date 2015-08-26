@@ -2,3 +2,8 @@
 - Get rid of local modification
 
 git reset --hard HEAD
+
+
+- Mark file as unchanged.
+
+git update-index --assume-unchanged file
