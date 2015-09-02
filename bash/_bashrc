@@ -1,0 +1,11 @@
+#Confirm file removal. Must have on prod
+alias rm='rm -i'
+# Folder color
+LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS
+# cd
+alias ..="cd .."
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+alias ..4="cd ../../../.."
+alias ..5="cd ../../../../.."
+
