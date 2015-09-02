@@ -78,3 +78,15 @@ colorscheme blue
 check terminal color capabilities:
 tput colors
 export TERM=xterm-256color
+
+* dos2unix
+
+:%s/<CTRL-V><CTRL-M>//g
+% = all lines
+<CTRL-V>=^ <CTRL-V><CTRL-M>=^M
+g=global = all occurrences on line
+instead of nothing we can user \r = new line in Unix
+
+:set ff=dos
+:set ff=unix
+where ff=file format
