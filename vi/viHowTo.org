@@ -3,7 +3,7 @@
 
 vi -version | grep syntax
 
-if -syntax => 
+if -syntax =>
 yum install vim-enhanced
 alias vi=vim
 
@@ -17,19 +17,21 @@ in vi:color desert
 * useful
 
 - save and run current script
-:map ,t :w \|:!bash %
+:map ,t :w \|:!bash %<CR>
 
 - comment lines
 ctrl-v 4j I # esc
+:.,10s/^/#comment/gc
 
 - execute replace on selection
 :5,10s/old/new/g | 14,18 &&
-:.,10s/^/#comment/gc
 :g/#comment/d
 
 - using marks
+set marks:
 m a
 m b
+jump between them
 'a
 'b
 :'a'b d # this will delete everything between marks a and b
@@ -37,8 +39,10 @@ m b
 - insert from OS commands
 :.!date
 
-- not allow to save
+- if don't have right to save..
+
 :w !sudo tee %
+
 * whitespace
 
 set list
@@ -63,3 +67,14 @@ set nospell
 ]s and [s move to next/previous misspell word
 z= suggest alternatives
 
+* color
+ls /usr/share/vim/vim74/colors
+and
+ls ~/.vim/colors
+in vim
+colo blue
+colorscheme blue
+
+check terminal color capabilities:
+tput colors
+export TERM=xterm-256color
