@@ -1,64 +1,80 @@
 
 
-** Install
+## Install
 
 
-*** Cent OS 6 
+### Cent OS 6 
 
 See https://docs.docker.com/installation/centos/
 
-64 bits
+~~~ bash
+#64 bits
 su -c 'rpm -Uvh http://epel.mirror.constant.com/6/x86_64/epel-release-6-8.noarch.rpm'
 sudo yum install docker-io
--- start it
+# start it
 sudo service docker start
--- start at server boot
+# start at server boot
 sudo chkconfig docker on
+~~~
 
-*** CentOS 7
+### CentOS 7
 http://wiki.centos.org/Cloud/Docker
 
--- start it
+~~~ bash
+# start it
 sudo systemctl start docker
--- start at service boot
+# start at service boot
 sudo systemctl enable docker
+~~~
 
-** Usefull
+## Usefull
 
-*** Remove old contains
+### Remove old contains
 
+~~~ bash
 docker ps -a | awk '{print $1}' | xargs docker rm {} \;
-or
+# or
 docker rm `docker ps -aq`
+~~~
 
+### Launch Interactive container
 
-*** Launch Interactive container
+~~~ bash
+docker run -t -i --rm ubuntu /bin/bash
+~~~
 
-docker run -t -i ubuntu /bin/bash
+### Background container
 
-*** Background container
-
--- launch a container and run some task
+~~~ bash
+# launch a container and run some task
 docker run -d ubuntu /bin/bash -c "while true; do echo hello world; sleep 1; done"
 
--- get container id
+# get container id
 docker ps
--- view output
+# view output
 sudo docker logs angry_mccarthy
--- stop it
+# stop it
 sudo docker stop angry_mccarthy
+~~~
 
+### Connect to a conatiner running as demon
 
-*** Connect to a conatiner running as demon
-
+~~~ bash
 docker run -p 8080:8080 -v /home/vagrant/data/jenkins:/var/jenkins_home jenkins 
 
 docker exec -it [container-id] /bin/bash
+~~~
 
-*** Shutdown a daemon 
+### Shutdown a daemon 
 
+~~~ bash
 docker stop `docker ps -q`
+~~~
 
-*** Build form Dockefile
+### Build form Dockefile
 
+~~~ bash
 docker build -t predoiua/adhoc_be .
+# don't use cache
+docker build -t --no-cache predoiua/adhoc_be .
+~~~
