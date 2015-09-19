@@ -1,4 +1,6 @@
+## General
 
+- ADD commands can't use .. in path. So Dockerfile must be in the build root.
 
 ## Install
 
