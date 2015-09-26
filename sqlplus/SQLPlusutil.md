@@ -1,10 +1,12 @@
 * Enable auto sqlplus initialization
 
+~~sh
 mkdir ~/sqlplus_init
 cp login.sql ~/sqlplus_init
 cat '
 export SQLPATH=~/sqlplus_init
 ' >> ~/.bash_profile
+~~~
 
 * Setings
 
