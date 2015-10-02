@@ -15,4 +15,11 @@ svn up .
 
 # checkout a revision
 svn up -rXXXX
+
+# view modified files
+svn status
+
+# revert local modification
+svn revert -R .
+
 ~~~
