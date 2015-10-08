@@ -20,18 +20,19 @@ screen -ls
 screen -DR sess.boot_app
 ~~~
 
-##Screen commands
+## attach to an existing session
 
-ctrt-t d  # detach
-
-attach
-screen -x # attach to existing sssion
+~~~bash
+screen -x # attach to existing session
 screen -dRR # force to connect to a session
+~~~
 
-
+##Screen commands
 
 CTR = Ctrl-A or Ctrl-T
 
+- CTR d = detach
 - CTR c = open a new terminal
 - CTR A = rename window
 - CTR 0-N = select windows with this number
+- CTR :kill = kill a frozen tab
