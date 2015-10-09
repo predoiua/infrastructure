@@ -31,6 +31,7 @@ screen -dRR # force to connect to a session
 
 CTR = Ctrl-A or Ctrl-T
 
+- CTR ? = help
 - CTR d = detach
 - CTR c = open a new terminal
 - CTR A = rename window
