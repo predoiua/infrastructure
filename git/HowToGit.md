@@ -34,4 +34,6 @@ git checkout new_branch
 ~~~bash
 #http://stackoverflow.com/questions/424071/list-all-the-files-for-a-commit-in-git
 git diff-tree --no-commit-id --name-only -r commit_sha
+
+git show --pretty="format:" --name-only commit_sha
 ~~~
