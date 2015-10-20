@@ -46,3 +46,13 @@ git branch -d the_local_branch
 #remote
 git push origin --delete the_remote_branch
 ~~~
+
+##Delete a local commit
+
+~~~bash
+git commit ...
+git reset --soft HEAD~1
+... edit files ...
+git add ...
+git commit -c ORIG_HEAD
+~~~
