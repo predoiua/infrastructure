@@ -37,3 +37,12 @@ git diff-tree --no-commit-id --name-only -r commit_sha
 
 git show --pretty="format:" --name-only commit_sha
 ~~~
+
+##Delete a branch
+
+~~~bash
+#local
+git branch -d the_local_branch
+#remote
+git push origin --delete the_remote_branch
+~~~
