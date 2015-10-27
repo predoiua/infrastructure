@@ -23,3 +23,20 @@ svn status
 svn revert -R .
 
 ~~~
+
+* Create new branch with Tortoise
+
+- Right click on trunk -> Select: Branch/Tag...
+- Select branch location : /branches/...
+Obs: Truck is not affected.
+
+* Apply a patch with Tortoise
+
+- Right click on branch -> Select:Merge...
+- Click "Show log" button : select commit
+- Click "Test Merge"
+- Merge
+- Do work
+- Commit merge
+
+
