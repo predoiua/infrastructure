@@ -59,7 +59,7 @@ sudo docker logs angry_mccarthy
 sudo docker stop angry_mccarthy
 ~~~
 
-### Connect to a conatiner running as demon
+### Connect to a container running as demon
 
 ~~~ bash
 docker run -p 8080:8080 -v /home/vagrant/data/jenkins:/var/jenkins_home jenkins 

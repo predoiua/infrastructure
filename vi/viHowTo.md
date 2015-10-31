@@ -2,7 +2,7 @@
 * vi color
 
 ~~~ sh
-vi -version | grep syntax
+vi --version | grep syntax
 
 #if -syntax =>
 yum install vim-enhanced
@@ -45,6 +45,7 @@ ctrl-v 4j I # esc
 ~~~
 
 - using marks
+
 ~~~ vi
 #set marks:
 m a
@@ -56,6 +57,7 @@ m b
 ~~~
 
 - insert from OS commands
+
 ~~~ vi
 :.!date
 ~~~
@@ -123,4 +125,26 @@ export TERM=xterm-256color
 :set ff=dos
 :set ff=unix
 #where ff=file format
+~~~
+
+* split
+
+http://stackoverflow.com/questions/53664/how-to-effectively-work-with-multiple-files-in-vim
+
+~~~vi
+:split and :vertical split (:sp and :vs)
+#naviage between windows
+Ctrl-W w
+#Close window
+Ctrl-W c
+#Increase window size
+Ctrl-W +
+#open file in window
+:b myfile
+~~~
+
+~~~vi
+:tabe file
+:tabn
+:tabp
 ~~~
