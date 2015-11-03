@@ -53,7 +53,7 @@ m b
 #jump between them
 'a
 'b
-:'a'b d # this will delete everything between marks a and b
+'ad'b # this will delete everything between marks a and b
 ~~~
 
 - insert from OS commands
@@ -137,7 +137,7 @@ http://stackoverflow.com/questions/53664/how-to-effectively-work-with-multiple-f
 Ctrl-W w
 #Close window
 Ctrl-W c
-#Increase window size
+#Increase window size	
 Ctrl-W +
 #open file in window
 :b myfile
@@ -147,4 +147,5 @@ Ctrl-W +
 :tabe file
 :tabn
 :tabp
+#use gt and gT to navigate between tabs
 ~~~
