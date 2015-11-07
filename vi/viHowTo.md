@@ -149,3 +149,10 @@ Ctrl-W +
 :tabp
 #use gt and gT to navigate between tabs
 ~~~
+
+* how to use leader
+
+~~~vi
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+~~~
