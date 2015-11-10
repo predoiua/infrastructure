@@ -2,7 +2,7 @@
 * vi color
 
 ~~~ sh
-vi -version | grep syntax
+vi --version | grep syntax
 
 #if -syntax =>
 yum install vim-enhanced
@@ -45,6 +45,7 @@ ctrl-v 4j I # esc
 ~~~
 
 - using marks
+
 ~~~ vi
 #set marks:
 m a
@@ -52,10 +53,11 @@ m b
 #jump between them
 'a
 'b
-:'a'b d # this will delete everything between marks a and b
+'ad'b # this will delete everything between marks a and b
 ~~~
 
 - insert from OS commands
+
 ~~~ vi
 :.!date
 :r !date
@@ -135,4 +137,34 @@ https://www.linux.com/learn/tutorials/442438-vim-tips-folding-fun
 zf
 #or
 zf10j
+~~~
+
+* split
+
+http://stackoverflow.com/questions/53664/how-to-effectively-work-with-multiple-files-in-vim
+
+~~~vi
+:split and :vertical split (:sp and :vs)
+#naviage between windows
+Ctrl-W w
+#Close window
+Ctrl-W c
+#Increase window size
+Ctrl-W +
+#open file in window
+:b myfile
+~~~
+
+~~~vi
+:tabe file
+:tabn
+:tabp
+#use gt and gT to navigate between tabs
+~~~
+
+* how to use leader
+
+~~~vi
+# Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
 ~~~
