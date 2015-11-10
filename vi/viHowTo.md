@@ -58,6 +58,7 @@ m b
 - insert from OS commands
 ~~~ vi
 :.!date
+:r !date
 ~~~
 
 - if don't have right to save..
@@ -123,4 +124,15 @@ export TERM=xterm-256color
 :set ff=dos
 :set ff=unix
 #where ff=file format
+~~~
+
+* fold
+
+https://www.linux.com/learn/tutorials/442438-vim-tips-folding-fun
+
+~~~vi
+#select in visual and :
+zf
+#or
+zf10j
 ~~~
