@@ -22,3 +22,10 @@ set pages 10000
 #silent = supress command prompt, command echo, banner
 sqlplus -s
 ~~~
+
+
+## Exit on error
+
+~~~sql
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+~~~

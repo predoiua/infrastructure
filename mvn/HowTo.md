@@ -1,10 +1,21 @@
 
-* Maven
+# Maven
 
-** POM
+## Install
+
+https://maven.apache.org/install.html
+
+- download zip
+cd ~/opt
+wget http://apache.mirrors.pair.com/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+tar xvzf apache-maven-3.3.9-bin.tar.gz
+rm !$
+ln -s ~/opt/apache-maven-3.3.9/bin/mvn ~/bin/mvn
+
+## POM
 
 
-*** Overall structure
+### Overall structure
 
 - In top folder we have a pom.xml including child poms ( each of them in their own subfolder ) 
 - Each pom contains groupId/artefactId/version ( no parent )
@@ -16,7 +27,7 @@ Eg.
 |com.vv10.bi.adhoc|
 |com.vv10.bi.adhoc.backend|
 
-*** Use command line
+### Use command line
 
 ~~~sh
 #Compile

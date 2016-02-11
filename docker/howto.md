@@ -73,13 +73,19 @@ docker exec -it [container-id] /bin/bash
 docker stop `docker ps -q`
 ~~~
 
-### Build form Dockefile
+### Build image form Dockefile
 
 ~~~ bash
 docker build -t predoiua/adhoc_be .
 # don't use cache
 docker build -t --no-cache predoiua/adhoc_be .
 ~~~
+
+### Build image form running container
+
+~~~ bash
+docker commit <container> <image>
+~~~~
 
 ### Cleanup
 
