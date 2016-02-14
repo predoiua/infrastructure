@@ -8,6 +8,7 @@
 docker run --name some-postgres -p 5432:5432 -e POSTGRES_PASSWORD=pass -e POSTGRES_DB=bi -d postgres:9.4
 #When done:
 docker stop some-postgres
+docker rm $(docker ps --all | grep some-postgres | awk '{print $1}')
 ~~~
 
 ### Connect to previous started server
@@ -62,3 +63,16 @@ select * from pg_catalog.pg_tables
 ~~~
 
 
+## Rename column (sort of)
+
+~~~
+alter table logistical_guidance add column delivery_date_time_from text not null default 'x';
+
+update logistical_guidance
+set
+	delivery_date_time_from = delivery_date_time
+;
+
+alter table logistical_guidance alter column delivery_date_time_from drop default;
+alter table logistical_guidance drop column delivery_date_time;
+~~~
