@@ -13,6 +13,7 @@ export SQLPATH=~/sqlplus_init
 ~~~ SQL
 define _editor=vi
 set linesize 10000
+ -- number of rows per page
 set pages 10000
 ~~~
 
