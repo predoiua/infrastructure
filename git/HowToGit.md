@@ -76,3 +76,11 @@ git checkout path/to/file/to/revert
 #For all unstaged files use:
 git checkout -- .
 ~~~
+
+## Get branch name
+
+~~~
+#http://git-blame.blogspot.ro/2013/06/checking-current-branch-programatically.html
+git rev-parse --abbrev-ref HEAD
+git symbolic-ref --short -q HEAD
+~~~
