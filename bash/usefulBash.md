@@ -1,7 +1,11 @@
 
 # set
+
+set -o # show all settings
+set +o noclobber; set -o | grep nocl
+
 set -e = exit ( stop )  on error ( !=0 return )
-aka: set -o  errexit 
+aka: set -o errexit
 
 set -x = for debug. print before execute
 aka: set -o xtrace
@@ -18,7 +22,7 @@ ${parameter:?err_msg}
 
 # script
 
-##initialize a variable with
+## initialize a variable with
 
 http://stackoverflow.com/questions/4437573/bash-assign-default-value
 
