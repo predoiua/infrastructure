@@ -168,3 +168,15 @@ Ctrl-W +
 # Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 ~~~
+
+* move/copy region
+
+~~~
+#move lines 5, 6 and 7 to after line 21
+:5,7m 21
+:5,7co 21
+#moves down 1 line
+:m +1
+#move up 1 lines
+:m -2
+~~~
