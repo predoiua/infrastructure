@@ -84,3 +84,11 @@ git checkout -- .
 git rev-parse --abbrev-ref HEAD
 git symbolic-ref --short -q HEAD
 ~~~
+
+## Remove file from index
+
+I "git add <file>" , but I dont want it in this commit
+
+~~~
+git reset HEAD <file>
+~~~

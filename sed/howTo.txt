@@ -1,0 +1,4 @@
+
+## Replace in place
+
+sed -i s/old/new/g fixture.sql
