@@ -1,4 +1,21 @@
 
-## Replace in place
+## Replace in place/global
 
+~~~
 sed -i s/old/new/g fixture.sql
+~~~
+
+### By default replace only once per line
+
+~~~
+echo dayday | sed s/day/night/
+#nightday
+echo dayday | sed 's/day/night/'
+~~~
+
+### File path replace
+
+~~~
+sed 's_/usr/local/bin_/common/bin_' <old >new
+sed 's:/usr/local/bin:/common/bin:' <old >new
+~~~
