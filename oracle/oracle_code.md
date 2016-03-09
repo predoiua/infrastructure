@@ -43,6 +43,8 @@ select sys_context( 'userenv', 'current_schema' ) from dual;
 
 ## All user env
 
+For oracle SID, SCHEMA..
+
 http://stackoverflow.com/questions/8114453/read-all-parameters-from-sys-context-userenv
 
 ~~~
@@ -117,4 +119,12 @@ http://stackoverflow.com/questions/8114453/read-all-parameters-from-sys-context-
         val for name in (action, audited_cursorid, authenticated_identity, authentication_data, authentication_method, bg_job_id, client_identifier, client_info, current_bind, current_edition_id, current_edition_name, current_schema, current_schemaid, current_sql, current_sqln, current_sql_length, current_user, current_userid, database_role, db_domain, db_name, db_unique_name, dblink_info, entryid, enterprise_identity, fg_job_id, global_context_memory, global_uid, host, identification_type, instance, instance_name, ip_address, isdba, lang, language, module, network_protocol, nls_calendar, nls_currency, nls_date_format, nls_date_language, nls_sort, nls_territory, os_user, policy_invoker, proxy_enterprise_identity, proxy_user, proxy_userid, server_host, service_name, session_edition_id, session_edition_name, session_user, session_userid, sessionid, sid, statementid, terminal)
       )
     ) res;
+~~~
+
+## Remove passwd expiration date
+
+~~~
+select profile from DBA_USERS where username = 'BI';
+alter profile DEFAULT limit password_life_time UNLIMITED;
+select resource_name,limit from dba_profiles where profile='DEFAULT';
 ~~~
