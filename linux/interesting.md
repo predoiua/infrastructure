@@ -1,3 +1,8 @@
+## Can not overwrite file
+
+~~~
+set -o noclobber
+~~~
 
 ## inotify
 
@@ -7,6 +12,14 @@ http://unix.stackexchange.com/questions/13751/kernel-inotify-watch-limit-reached
 for foo in /proc/*/fd/*; do readlink -f $foo; done |grep inotify |cut -d/ -f3 |xargs -I '{}' -- ps --no-headers -o '%p %U %c' -p '{}' |uniq -c |sort -nr
 ~~~
 
+increase it :
+
+~~~
+#temporary
+sudo sysctl fs.inotify.max_user_watches=524288
+#permanent
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+~~~
 
 ## Enable/disable wireless
 
@@ -24,7 +37,7 @@ sudo modprobe psmouse proto=imps
 ~~~
 
 
-## Scriptying
+## Scripting
 
 ~~~ bash
 script_name=`basename $0 .sh`
@@ -35,5 +48,4 @@ script_name=`basename $0 .sh`
 if [[ "abc" == [abc]* ]]; then
     echo "it is true"
 fi
-
 ~~~
