@@ -33,12 +33,12 @@ select id, id_parent
 from recursive;
 
 -- usage
-with recursive (id, id_parent) as (
-	select child.id, child.id_parent
+with recursive (id, id_parent, lvl) as (
+	select child.id, child.id_parent, 1 lvl
 	from h child
 	where child.id = 5
 	union all
-	select h.id, h.id_parent
+	select h.id, h.id_parent, lvl + 1
 	from recursive r
 		join h on h.id = r.id_parent
 )
