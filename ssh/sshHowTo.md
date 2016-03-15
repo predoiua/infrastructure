@@ -1,5 +1,5 @@
 
-#Install
+# Install
 
 config file : /etc/ssh/sshd_config
 
@@ -54,4 +54,13 @@ RSA key fingerprint is 01:d1:5e:7c:3f:71:48:9d:61:20:13:7d:f5:15:39:43.
 Are you sure you want to continue connecting (yes/no)? yes
 
 ssh -i ~/.ssh/id_rsa u@172.17.0.1
+~~~
+
+## Secure copy file from script
+
+~~~
+sshpass -p 'passs' sftp  user@host << FIN
+        put file destination
+        bye
+FIN
 ~~~
