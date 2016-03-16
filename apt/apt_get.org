@@ -1,6 +1,7 @@
-- apt-get update
-- dpkg -l *git*
-- apt-get install git-core
-- mkdir git_pa
-- cd git_pa
-- git clone https://github.com/predoiua/setup.git
+# usage
+
+~~~
+apt-get update
+dpkg -l *git*
+apt-get install git-core
+~~~

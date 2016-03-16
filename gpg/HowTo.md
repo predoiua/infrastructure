@@ -5,14 +5,14 @@ http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/
 Export/import:
 https://gist.github.com/chrisroos/1205934
 
-- Generate key / Export key
+## Generate key / Export key
 
 ~~~sh
 gpg --gen-key
 gpg --export -a "AP" > AP-public.key
 ~~~
 
-- Backup
+## Backup
 
 Something fishy here...
 

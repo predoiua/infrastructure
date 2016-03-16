@@ -1,21 +1,21 @@
 
 # Useful commands
 
-- search in current folder for file containing a substring
+## search in current folder for file containing a substring
 
 ~~~sh
 #r = recursive
 grep -r --include=\*clear.sql partition .
 ~~~
 
-- split a string in char
+## split a string in char
 
 ~~~sh
 #o = print only matching pattern, one per line
 echo "abc" | grep -o .
 ~~~
 
-- find files that contains an exact string
+## find files that contains an exact string
 
 ~~~sh
 # -r = recursive
