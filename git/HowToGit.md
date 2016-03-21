@@ -43,6 +43,8 @@ git show --pretty="format:" --name-only commit_sha
 ~~~bash
 #local
 git branch -d the_local_branch
+#force a local delete
+git branch -D the_local_branch
 #remote
 git push origin --delete the_remote_branch
 ~~~
@@ -91,4 +93,12 @@ I "git add <file>" , but I dont want it in this commit
 
 ~~~
 git reset HEAD <file>
+~~~
+
+## Fix commit message
+
+http://stackoverflow.com/questions/179123/edit-an-incorrect-commit-message-in-git
+
+~~~
+git commit --ammend
 ~~~
