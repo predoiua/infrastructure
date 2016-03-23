@@ -51,6 +51,12 @@ git push origin --delete the_remote_branch
 
 ## Delete a local commit
 
+~~~
+git reset --hard HEAD~1
+~~~
+
+## Redo a local commit
+
 ~~~bash
 git commit ...
 git reset --soft HEAD~1
@@ -102,3 +108,4 @@ http://stackoverflow.com/questions/179123/edit-an-incorrect-commit-message-in-gi
 ~~~
 git commit --ammend
 ~~~
+
