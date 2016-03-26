@@ -30,3 +30,16 @@ sqlplus -s
 ~~~sql
 WHENEVER SQLERROR EXIT SQL.SQLCODE
 ~~~
+
+## NSL
+
+~~~bash
+export NLS_LANG="FRENCH_FRANCE.WE8MSWIN1252"
+~~~
+
+~~~sqlplus
+alter session set NLS_LANGUAGE=FRENCH;
+alter session set NLS_TERRITORY=FRANCE;
+~~~
+
+

@@ -51,6 +51,12 @@ git push origin --delete the_remote_branch
 
 ## Delete a local commit
 
+~~~
+git reset --hard HEAD~1
+~~~
+
+## Redo a local commit
+
 ~~~bash
 git commit ...
 git reset --soft HEAD~1
@@ -93,6 +99,7 @@ I "git add <file>" , but I dont want it in this commit
 
 ~~~
 git reset HEAD <file>
+git reset HEAD -- .
 ~~~
 
 ## Fix commit message
@@ -101,4 +108,18 @@ http://stackoverflow.com/questions/179123/edit-an-incorrect-commit-message-in-gi
 
 ~~~
 git commit --ammend
+~~~
+
+
+## didd
+
+http://stackoverflow.com/questions/1587846/how-do-i-show-the-changes-which-have-been-staged
+
+~~~
+#working folder vs index
+git diff
+#index vs HEAD
+git diff --cached
+#HEAD vs working folder
+git diff HEAD
 ~~~
