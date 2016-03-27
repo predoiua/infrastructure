@@ -111,7 +111,7 @@ git commit --ammend
 ~~~
 
 
-## didd
+## diff
 
 http://stackoverflow.com/questions/1587846/how-do-i-show-the-changes-which-have-been-staged
 
@@ -122,4 +122,16 @@ git diff
 git diff --cached
 #HEAD vs working folder
 git diff HEAD
+~~~
+
+## rename branch
+
+http://stackoverflow.com/questions/6591213/how-do-i-rename-the-local-branch
+
+-m is for "move" (or mv), which is how you rename files.
+
+~~~
+git branch -m <oldname> <newname>
+#rename currenct branch 
+git branch -m <newname>
 ~~~
