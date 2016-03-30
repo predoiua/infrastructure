@@ -8,9 +8,10 @@ Details:
 
 ~~~ bash
 cd ~/opt
-curl -O http://www.scala-lang.org/files/archive/scala-2.11.7.tgz
-tar xvf scala-2.11.7.tgz
-ln -s ~/opt/scala-2.11.7/bin/scala ~/bin/scala
+scala_ver="2.11.8"
+curl -O http://www.scala-lang.org/files/archive/scala-${scala_ver}.tgz
+tar xvf scala-${scala_ver}.tgz
+ln -s ~/opt/scala-${scala_ver}/bin/scala ~/bin/scala
 
 scala -version
 ~~~
