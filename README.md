@@ -1,12 +1,5 @@
 # Infrastructure
 
-Contains various docs/scripts for useful IT tools.
-
-## Docker
-
-## Nginx
-
-## Jenkins
-
+Contains various info IT that I believe are worth knowing about.
 
 
