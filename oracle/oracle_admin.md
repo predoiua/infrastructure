@@ -1,38 +1,106 @@
+# To Know
 
-# Nice tricks
+## Server administration
 
-## Generate a time dimension
+### Automatically start Oracle 10g on CentOS 5
 
-~~~ sql
-SELECT LEVEL n
-FROM dual
-CONNECT BY LEVEL <= 100
+~~~bash
+1. vi /etc/oratab. At the end should be Y
+2. vi $ORACLE_HOME/bin/dbstart
+line 78 set ORACLE_HOME_LISTNER=$ORACLE_HOME
+3.
+> /etc/rc.d/init.d/oracle
+
+echo '#!/bin/bash
+# chkconfig: 345 99 10
+# description: Oracle auto start-stop script.
+case "$1" in
+  start)
+        su - oracle -c dbstart >> /var/log/oracle
+        su - oracle -c "lsnrctl start" >> /var/log/oracle
+        ;;
+  stop)
+        su - oracle -c "lsnrctl stop" >> /var/log/oracle
+        su - oracle -c dbshut >> /var/log/oracle
+        ;;
+  restart)
+        su - oracle -c dbshut >> /var/log/oracle
+        su - oracle -c dbstart >> /var/log/oracle
+        su - oracle -c "lsnrctl stop" >> /var/log/oracle
+        su - oracle -c "lsnrctl start" >> /var/log/oracle
+        ;;
+  *)
+        echo "Usage: oracle {start|stop|restart}"
+        exit 1
+esac
+'>> /etc/rc.d/init.d/oracle
+
+chmod 750 /etc/rc.d/init.d/oracle
+
+#chkconfig --add oracle
+chkconfig --level 2345 oracle on
+chkconfig --list oracle
 ~~~
 
-## Currency
+### Data Pump folder
+
+~~~sql
+SELECT directory_path FROM dba_directories WHERE directory_name = 'DATA_PUMP_DIR';
+~~~
+
+### Import data with DB pump but change data file location
+
+Tablespaces have to be moved in a distinct step.
+I was unable to create both users and tablespaces in same step.
+
+~~~bash
+...
+remap_datafile=\"/tmp/test01.dbf\":\"/home/oracle/oradata_11g/test01.dbf\"
+...
+~~~
+http://www.dba-oracle.com/t_rman_173_impdp_remap.htm
+
+
+### Check if an user is connected in Oracle
+
+~~~sql
+select s.sid, s.serial#, s.status, p.spid 
+from v$session s, v$process p 
+where s.username = 'myuser' 
+and p.addr (+) = s.paddr;
+~~~
+
+### Create DB link
+
+~~~sql
+DROP PUBLIC DATABASE LINK remote; 
+CREATE PUBLIC DATABASE LINK remote CONNECT TO scott IDENTIFIED BY tiger USING 'remote'; 
+~~~
+
+### Modify column data type
+
+~~~sql
+alter table table_name
+modify ( 
+   column_name    varchar2(30)
+);
+~~~
+
+### Increase process limit
+
+needs DB restart
 
 ~~~
-with day as (
-select to_date('2010-01-01','yyyy-mm-dd') -1 + n day
-from dual
-	cross join (
-		SELECT LEVEL n
-		FROM dual
-		CONNECT BY LEVEL <= 10000
-	)
-)
-select 
-	 cur_code, 
-	 cur_change,
-	 day
-from day
-	cross join (
-		select cur_code, cur_change
-		from  (
-			select 'EUR' cur_code, 1 cur_change from dual
-		)
-	) cur
-where day between to_date('2014-01-01','yyyy-mm-dd') and to_date('2016-08-01','yyyy-mm-dd')
+show parameter process;
+alter system set processes=300 scope=spfile;
+alter system set sessions=300 scope=spfile;
+~~~
+
+### Charset 
+
+~~~sql
+SELECT value$ FROM sys.props$ WHERE name = 'NLS_CHARACTERSET';
+SELECT * FROM NLS_DATABASE_PARAMETERS;
 ~~~
 
 ## Current user
@@ -127,4 +195,12 @@ http://stackoverflow.com/questions/8114453/read-all-parameters-from-sys-context-
 select profile from DBA_USERS where username = 'BI';
 alter profile DEFAULT limit password_life_time UNLIMITED;
 select resource_name,limit from dba_profiles where profile='DEFAULT';
+~~~
+
+## Unlock account
+
+ORA-28000: the account is locked
+
+~~~
+alter user scott account unlock;
 ~~~
