@@ -135,3 +135,9 @@ git branch -m <oldname> <newname>
 #rename currenct branch 
 git branch -m <newname>
 ~~~
+
+## get an older file
+
+~~~
+git checkout COMMIT_SHA file/to/restore
+~~~
