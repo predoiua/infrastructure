@@ -32,4 +32,10 @@ echo $A #=> hello
 ~~~
 
 
+## for cycle
 
+~~~bash
+for i in {0..5} ; do 
+	echo $i ; 
+done
+~~~
