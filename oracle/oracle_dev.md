@@ -275,7 +275,7 @@ set -e
 
 function execute_sql() {
     local p_conn=$1
-    local p_sql=$3
+    local p_sql=$2
 
     p_sql=${p_sql//old_string/new_string}
     p_res=`sqlplus -s ${p_conn} << FIN 2>&1
