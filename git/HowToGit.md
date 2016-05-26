@@ -141,3 +141,9 @@ git branch -m <newname>
 ~~~
 git checkout COMMIT_SHA file/to/restore
 ~~~
+
+## Disable passwd input popup on Win
+
+~~~
+git config --global core.askPass ""
+~~~
