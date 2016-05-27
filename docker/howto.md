@@ -102,3 +102,14 @@ docker run -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/
 ~~~bash
 docker inspect <container> | grep IP
 ~~~
+
+### Move image to a diff machine
+
+http://stackoverflow.com/questions/23935141/how-to-copy-docker-images-from-one-host-to-another-without-via-repository
+
+~~~
+docker save -o <save image to path> <image name>
+#Then copy your image to a new system with regular file transfer tools such as cp or scp. After that you will have to load the image into docker:
+
+docker load -i <path to image tar file>
+~~~
