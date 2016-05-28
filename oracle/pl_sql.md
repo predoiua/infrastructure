@@ -9,7 +9,7 @@ http://stackoverflow.com/questions/11315340/pl-sql-how-to-escape-single-quote-in
 stmt := q'[insert into MY_TBL (Col) values('ER0002')]';
 ~~~
 
-## Catch sql erro code
+## Catch sql error code
 
 ~~~plsql
 begin
