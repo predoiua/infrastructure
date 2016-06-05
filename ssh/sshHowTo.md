@@ -5,6 +5,7 @@ config file : /etc/ssh/sshd_config
 
 CentOS 6.6
 
+## On remote server
 
 in Docker image:
 
@@ -39,6 +40,8 @@ touch ~/.ssh/authorized_keys
 chmod 0640 ~/.ssh/authorized_keys
 ~~~
 
+## On local machine
+
 Linux host:
 
 ~~~bash
@@ -56,7 +59,9 @@ Are you sure you want to continue connecting (yes/no)? yes
 ssh -i ~/.ssh/id_rsa u@172.17.0.1
 ~~~
 
-## Secure copy file from script
+## Other
+
+### Secure copy file from script
 
 ~~~
 sshpass -p 'passs' sftp  user@host << FIN
@@ -64,3 +69,17 @@ sshpass -p 'passs' sftp  user@host << FIN
         bye
 FIN
 ~~~
+
+### Generate ssh key
+
+~~~
+ssh-keygen -t rsa -f ~/.ssh/ansible_id_rsa -C "predoiua.vv10@gmail.com"
+~~~
+
+### Copy ssh key
+
+~~~
+scp ~/.ssh/ansible_id_rsa.pub predoiua@172.17.0.1:~/ansible_id_rsa.pub
+cat ~/ansible_id_rsa.pub >> ~/.ssh/authorized_keys
+~~~
+

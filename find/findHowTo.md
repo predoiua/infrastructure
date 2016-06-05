@@ -1,6 +1,6 @@
-#Useful one liner
+# Useful one liner
 
-- Delete some files
+## Delete some files
 
 ~~~ bash
 find . -name *~ -delete

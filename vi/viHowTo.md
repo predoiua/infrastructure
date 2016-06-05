@@ -1,5 +1,6 @@
+# vi
 
-* vi color
+## vi color
 
 ~~~ sh
 vi --version | grep syntax
@@ -15,14 +16,14 @@ in vi
 :color desert
 ~~~
 
-* syntax
+## syntax
 
 ~~~ vi
 :set syntax=sh
 :set syn=off
 ~~~
 
-* useful
+## useful
 
 - save and run current script
 
@@ -69,7 +70,7 @@ m b
 :w !sudo tee %
 ~~~
 
-* whitespace
+## whitespace
 
 ~~~vi
 set list
@@ -87,7 +88,7 @@ set expandtab
 set expandtab ts=4 sw=4 ai
 ~~~
 
-* language
+## language
 
 ~~~vi
 set spell spelllang=en_us
@@ -97,7 +98,7 @@ set nospell
 #z= suggest alternatives
 ~~~
 
-* color
+## color
 
 ~~~sh
 ls /usr/share/vim/vim74/colors
@@ -114,7 +115,7 @@ tput colors
 export TERM=xterm-256color
 ~~~
 
-* dos2unix
+## dos2unix
 
 ~~~vi
 :%s/<CTRL-V><CTRL-M>//g
@@ -128,7 +129,7 @@ export TERM=xterm-256color
 #where ff=file format
 ~~~
 
-* fold
+## fold
 
 https://www.linux.com/learn/tutorials/442438-vim-tips-folding-fun
 
@@ -139,7 +140,7 @@ zf
 zf10j
 ~~~
 
-* split
+## split
 
 http://stackoverflow.com/questions/53664/how-to-effectively-work-with-multiple-files-in-vim
 
@@ -162,14 +163,14 @@ Ctrl-W +
 #use gt and gT to navigate between tabs
 ~~~
 
-* how to use leader
+## how to use leader
 
 ~~~vi
 # Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 ~~~
 
-* move/copy region
+## move/copy region
 
 ~~~
 #move lines 5, 6 and 7 to after line 21
@@ -180,3 +181,4 @@ nmap <leader>l :set list!<CR>
 #move up 1 lines
 :m -2
 ~~~
+
