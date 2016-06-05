@@ -182,3 +182,14 @@ nmap <leader>l :set list!<CR>
 :m -2
 ~~~
 
+##  case sensitive/insensitive search
+
+http://stackoverflow.com/questions/2287440/how-to-do-case-insensitive-search-in-vim
+
+~~~
+#ignore case
+:set ic
+:set noic
+#or: case insensive per individual search
+/Copyright\c
+~~~
