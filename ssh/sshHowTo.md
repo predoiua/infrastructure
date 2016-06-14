@@ -83,3 +83,9 @@ scp ~/.ssh/ansible_id_rsa.pub predoiua@172.17.0.1:~/ansible_id_rsa.pub
 cat ~/ansible_id_rsa.pub >> ~/.ssh/authorized_keys
 ~~~
 
+### Copy ssh kye 2
+
+~~~
+# -i = 
+ssh-copy-id  -i ~/ansible_id_rsa.pub predoiua@172.17.0.1
+~~~
