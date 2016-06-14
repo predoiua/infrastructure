@@ -336,3 +336,10 @@ select * from DBA_DB_LINKS order by CREATED ASC;
 WHENEVER SQLERROR EXIT
 ~~~
 
+
+## Clear cache
+
+~~~
+alter system set events 'immediate trace name flush_cache';
+alter system flush shared_pool;
+~~
