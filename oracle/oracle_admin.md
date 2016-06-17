@@ -204,3 +204,26 @@ ORA-28000: the account is locked
 ~~~
 alter user scott account unlock;
 ~~~
+
+## Fail to enable "set autotrace on"
+
+~~~
+--as sys
+@$ORACLE_HOME/sqlplus/admin/plustrce.sql
+
+grant plustrace to scott;
+
+--as scott
+@$ORACLE_HOME/rdbms/admin/utlxplan.sql
+~~~
+
+
+## add datafile to tablespace
+
+~~~
+SELECT  TABLESPACE_NAME, FILE_NAME FROM DBA_DATA_FILES;
+
+ALTER TABLESPACE  BI
+ADD DATAFILE '/vol01/oradata/PROD/datafile/bi_2.dbf' 
+size 30G;
+~~
