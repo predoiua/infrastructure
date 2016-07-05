@@ -221,9 +221,13 @@ grant plustrace to scott;
 ## add datafile to tablespace
 
 ~~~
-SELECT  TABLESPACE_NAME, FILE_NAME FROM DBA_DATA_FILES;
+SELECT  TABLESPACE_NAME, FILE_NAME, AUTOEXTENSIBLE 
+FROM DBA_DATA_FILES;
 
 ALTER TABLESPACE  BI
 ADD DATAFILE '/vol01/oradata/PROD/datafile/bi_2.dbf' 
 size 30G;
 ~~
+
+
+
