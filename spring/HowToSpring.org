@@ -1,9 +1,10 @@
 
 * Spring boot
 
+~~~
 run
 mvn spring-boot:run
-is same as:
+#is same as:
 mvn package
 java -jar target/xxx.jar
-
+~~~
