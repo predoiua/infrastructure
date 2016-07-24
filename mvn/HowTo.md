@@ -6,11 +6,15 @@
 https://maven.apache.org/install.html
 
 - download zip
+
+~~~
 cd ~/opt
 wget http://apache.mirrors.pair.com/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
 tar xvzf apache-maven-3.3.9-bin.tar.gz
 rm !$
+cd ~/bin
 ln -s ~/opt/apache-maven-3.3.9/bin/mvn ~/bin/mvn
+~~~
 
 ## POM
 
