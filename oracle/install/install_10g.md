@@ -62,7 +62,7 @@ cat <<FIN |
     X Window System
 FIN
 while read pack; do
-    yum groupinstall "${pack}" -y
+    echo yum groupinstall "${pack}" -y
 done
 
 yum groupinfo "Base" | less

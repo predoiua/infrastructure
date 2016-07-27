@@ -18,7 +18,7 @@ sed -i "s/fs\.file-max.*/fs\.file-max=6815744/g" /etc/sysctl.conf
 sed -i "s/net\.ipv4\.ip_local_port_range.*/net\.ipv4\.ip_local_port_range=9000 65500/g" /etc/sysctl.conf
 sed -i "s/net\.core\.rmem_max.*/net\.core\.rmem_max=4194304/g" /etc/sysctl.conf
 sed -i "s/net\.core\.wmem_max.*/net\.core\.wmem_max=1048576/g" /etc/sysctl.conf
-sed -i "s/kernel\.shmmax.*/kernel\.shmmax=3129571328/g" /etc/sysctl.conf
+sed -i "s/kernel\.shmmax.*/kernel\.shmmax=4101769216/g" /etc/sysctl.conf
 
 echo " 
 fs.aio-max-nr=1048576
