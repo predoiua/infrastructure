@@ -1,24 +1,33 @@
-* Compile Maven project
+# Compile Maven project
 
-** Using Jenkins docker image
+## Using Jenkins docker image
 
-*** Create a working folder
+### Create a working folder
+
+~~~
 mkdir -p ~/jenkins_work
 chmod 0777 ~/jenkins_work
+~~~
 
-*** Start Jenkins image
+### Start Jenkins image
+
+~~~
 docker run -p 8080:8080 -v ~/data/jenkins:/var/jenkins_home jenkins
+~~~
 
-***  Configure Jenkins
+### Configure Jenkins
 
 Browser to http://localhost:8080
-**** GitHub integration
+
+#### GitHub integration
+
 -> Manage Jenkins
 -> Manage plugins
 -> install : "GitHub plugin" -> "Download now and install after restart"
 Restart Jenkins
 
-**** Configure Maven
+#### Configure Maven
+
 -> Manage Jenkins
 -> Configure Systems
 JDK - set 

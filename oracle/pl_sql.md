@@ -14,9 +14,9 @@ stmt := q'[insert into MY_TBL (Col) values('ER0002')]';
 ~~~plsql
 begin
 execute immediate q'[
-create table x (
-	id number
-) 
+	create table x (
+		id number
+	) 
 ]';
 exception when others then
       if sqlcode = -955 then null; else raise; end if;

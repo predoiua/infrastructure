@@ -8,9 +8,10 @@ sed -i s/old/new/g fixture.sql
 ### By default replace only once per line
 
 ~~~
-echo dayday | sed s/day/night/
-#nightday
-echo dayday | sed 's/day/night/'
+echo day_day | sed s/day/night/
+#night_day
+echo day_day | sed s/day/night/g
+#night_night
 ~~~
 
 ### File path replace
