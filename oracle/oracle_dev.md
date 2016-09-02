@@ -336,10 +336,15 @@ select * from DBA_DB_LINKS order by CREATED ASC;
 WHENEVER SQLERROR EXIT
 ~~~
 
-
-## Clear cache
+## Nice to know views
 
 ~~~
-alter system set events 'immediate trace name flush_cache';
-alter system flush shared_pool;
-~~
+-- view source code
+SELECT * FROM user_source WHERE TYPE = 'PACKAGE BODY';
+-- user functions, procs, packages
+SELECT object_name FROM USER_OBJECTS WHERE OBJECT_TYPE IN ('FUNCTION','PROCEDURE','PACKAGE');
+-- user tables
+select table_name from user_tables;
+-- user views
+select view_name from user_views;
+~~~

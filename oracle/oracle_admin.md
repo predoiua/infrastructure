@@ -230,4 +230,9 @@ size 30G;
 ~~
 
 
+## Clear cache
 
+~~~
+alter system set events 'immediate trace name flush_cache';
+alter system flush shared_pool;
+~~
