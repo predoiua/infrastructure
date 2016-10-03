@@ -23,3 +23,11 @@ echo "abc" | grep -o .
 # -F = disable regex in pattern
 grep -rlF "[Expense].[Expenses]" .
 ~~~
+
+## remove empty line
+
+~~~
+# -v = inverse selectin
+# -e = regular expression for pattern matching
+cat tmp/main.sql  | grep -v -e '^$' 
+~~~
