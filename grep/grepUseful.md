@@ -31,3 +31,12 @@ grep -rlF "[Expense].[Expenses]" .
 # -e = regular expression for pattern matching
 cat tmp/main.sql  | grep -v -e '^$' 
 ~~~
+
+## in place modification
+
+-i flag is not supported by grep
+Use:
+
+~~~
+grep -v '#delete' demo.sql | sponge demo.sql 
+~~~
