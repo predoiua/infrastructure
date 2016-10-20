@@ -39,3 +39,9 @@ for i in {0..5} ; do
 	echo $i ; 
 done
 ~~~
+
+## execute command if some conditions are met
+
+~~~
+test -d alim_py || (echo "ERR:Not such folder"; exit 1) && echo "Execute cmd"
+~~~
