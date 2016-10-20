@@ -132,7 +132,7 @@ http://stackoverflow.com/questions/6591213/how-do-i-rename-the-local-branch
 
 ~~~
 git branch -m <oldname> <newname>
-#rename currenct branch 
+#rename current branch
 git branch -m <newname>
 ~~~
 

@@ -40,3 +40,15 @@ Use:
 ~~~
 grep -v '#delete' demo.sql | sponge demo.sql 
 ~~~
+
+## Search all words with same begining
+
+-o = print only matching text
+-i = ignore case
+-h = exclude filename form result
+-r = recursive
+-v = exclude matching line
+
+~~~
+grep -i -h -r BEGINING . --include="*.sql" | grep -v "\-\-" | grep -v "*" | grep -o -i 'BEGINING[^.]*'
+~~~
