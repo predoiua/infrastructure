@@ -45,3 +45,10 @@ done
 ~~~
 test -d alim_py || (echo "ERR:Not such folder"; exit 1) && echo "Execute cmd"
 ~~~
+
+## Execute local script on remote machine
+
+~~~
+# -s = everything after it are arguments, not options.
+ssh root@machine 'bash -s' < local_script.sh
+~~
