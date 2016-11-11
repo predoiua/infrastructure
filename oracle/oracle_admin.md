@@ -221,11 +221,11 @@ grant plustrace to scott;
 ## add datafile to tablespace
 
 ~~~
-SELECT  TABLESPACE_NAME, FILE_NAME, AUTOEXTENSIBLE 
+SELECT TABLESPACE_NAME, FILE_NAME, AUTOEXTENSIBLE 
 FROM DBA_DATA_FILES;
 
 ALTER TABLESPACE  BI
-ADD DATAFILE '/vol01/oradata/PROD/datafile/bi_2.dbf' 
+ADD DATAFILE '/vol01/oradata/SID/datafile/bi_2.dbf' 
 size 30G;
 ~~
 
@@ -236,3 +236,10 @@ size 30G;
 alter system set events 'immediate trace name flush_cache';
 alter system flush shared_pool;
 ~~
+
+## Revoke DBA role from user
+
+~~~
+select * from dba_role_privs where granted_role='DBA';
+revoke dba from XXX;
+~~~

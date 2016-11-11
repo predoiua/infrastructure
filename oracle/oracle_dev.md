@@ -15,23 +15,23 @@ CONNECT BY LEVEL <= 100
 with day as (
 select to_date('2010-01-01','yyyy-mm-dd') -1 + n day
 from dual
-	cross join (
-		SELECT LEVEL n
-		FROM dual
-		CONNECT BY LEVEL <= 10000
-	)
+    cross join (
+        SELECT LEVEL n
+        FROM dual
+        CONNECT BY LEVEL <= 10000
+    )
 )
 select 
-	 cur_code, 
-	 cur_change,
-	 day
+     cur_code, 
+     cur_change,
+     day
 from day
-	cross join (
-		select cur_code, cur_change
-		from  (
-			select 'EUR' cur_code, 1 cur_change from dual
-		)
-	) cur
+    cross join (
+        select cur_code, cur_change
+        from  (
+            select 'EUR' cur_code, 1 cur_change from dual
+        )
+    ) cur
 where day between to_date('2014-01-01','yyyy-mm-dd') and to_date('2016-08-01','yyyy-mm-dd')
 ~~~
 
@@ -169,23 +169,23 @@ http://stackoverflow.com/questions/1020348/oracle-select-from-record-datatype
 
 ~~~sql
 create type myobj is object ( 
-   id int
-  ,name varchar2(10)
+    id int
+    ,name varchar2(10)
 );
 /
 
 create package mypkg as
-      function f return myobj;
+    function f return myobj;
 end mypkg;
 /
 
 
 create package body mypkg  as
-  function f return myobj
-  is
-  begin
-    return myobj(1,'test');
-  end f;
+    function f return myobj
+    is
+    begin
+        return myobj(1,'test');
+    end f;
 end mypkg;
 /
 
