@@ -45,7 +45,9 @@ chkconfig --list oracle
 ### Data Pump folder
 
 ~~~sql
-SELECT directory_path FROM dba_directories WHERE directory_name = 'DATA_PUMP_DIR';
+SELECT directory_path
+FROM dba_directories
+WHERE directory_name = 'DATA_PUMP_DIR';
 ~~~
 
 ### Import data with DB pump but change data file location
@@ -228,6 +230,68 @@ ALTER TABLESPACE  BI
 ADD DATAFILE '/vol01/oradata/SID/datafile/bi_2.dbf' 
 size 30G;
 ~~
+
+## add datafile to TEMP tablespace
+
+based on:
+http://onlineappsdba.com/index.php/2009/07/27/ora-1652-unable-to-extend-temp-segment-by-128-in-tablespace-temp/
+
+~~~
+-- 1. Find tablespace files
+select file_name , tablespace_name, t.*
+from dba_temp_files t;
+-- 2. Find free space
+select   
+    a.tablespace_name tablespace, 
+    d.mb_total,
+    sum (a.used_blocks * d.block_size) / 1024 / 1024 mb_used,
+    d.mb_total - sum (a.used_blocks * d.block_size) / 1024 / 1024 mb_free
+from     v$sort_segment a,
+(
+  select   b.name, c.block_size, sum (c.bytes) / 1024 / 1024 mb_total
+  from     v$tablespace b, v$tempfile c
+  where    b.ts#= c.ts#
+  group by b.name, c.block_size
+  ) d
+where    a.tablespace_name = d.name
+group by a.tablespace_name, d.mb_total;
+
+-- 3. add new file
+alter tablespace temp add tempfile '/u01/app/oracle/oradata/dwh/temp02.db'
+  size 30G reuse autoextend on next 1G  maxsize 30G;
+-- or reise
+alter database tempfile '/u01/app/oracle/oradata/dwh/temp01.dbf' resize 3072m;
+
+-- why
+-- Usage per statement
+select  s.sid || ',' || s.serial# sid_serial, s.username, q.hash_value, q.sql_text,
+        t.blocks * tbs.block_size / 1024 / 1024 mb_used, t.tablespace
+from    v$sort_usage t,
+        v$session s,
+        v$sqlarea q,
+        dba_tablespaces tbs
+where   t.session_addr = s.saddr
+      and     t.sqladdr = q.address
+      and     t.tablespace = tbs.tablespace_name
+order by mb_used;
+
+-- Usage per session
+select 
+  s.sid || ',' || s.serial# sid_serial, s.username, s.osuser, p.spid, s.module,
+  p.program, sum (t.blocks) * tbs.block_size / 1024 / 1024 mb_used, t.tablespace,
+  count(*) statements
+from     v$sort_usage t, 
+         v$session s,
+         dba_tablespaces tbs,
+         v$process p
+where    t.session_addr = s.saddr
+    and  s.paddr = p.addr
+    and  t.tablespace = tbs.tablespace_name
+group by s.sid, s.serial#, s.username, s.osuser, p.spid, s.module,
+    p.program, tbs.block_size, t.tablespace
+order by mb_used;
+
+~~~
 
 
 ## Clear cache
