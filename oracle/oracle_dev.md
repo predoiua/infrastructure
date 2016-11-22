@@ -348,3 +348,10 @@ select table_name from user_tables;
 -- user views
 select view_name from user_views;
 ~~~
+
+## SQLPLUS html
+
+~~~
+SET MARKUP HTML ON
+spool a.html
+~~~

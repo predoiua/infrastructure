@@ -207,6 +207,14 @@ ORA-28000: the account is locked
 alter user scott account unlock;
 ~~~
 
+## Disable account lock on failed login attempt
+
+~~~
+SELECT * FROM dba_profiles WHERE PROFILE='DEFAULT' ORDER BY resource_name;
+ALTER PROFILE default LIMIT FAILED_LOGIN_ATTEMPTS unlimited;
+ALTER PROFILE default LIMIT FAILED_LOGIN_ATTEMPTS 5;
+~~~
+
 ## Fail to enable "set autotrace on"
 
 ~~~
