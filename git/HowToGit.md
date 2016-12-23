@@ -147,3 +147,13 @@ git checkout COMMIT_SHA file/to/restore
 ~~~
 git config --global core.askPass ""
 ~~~
+
+## Clean local untracked files/folders
+
+~~~
+# -f = force
+# -d = include folders
+# -n = dry run
+git clean -fd
+~~~
+
