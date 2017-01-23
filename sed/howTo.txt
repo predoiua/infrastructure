@@ -20,3 +20,14 @@ echo day_day | sed s/day/night/g
 sed 's_/usr/local/bin_/common/bin_' <old >new
 sed 's:/usr/local/bin:/common/bin:' <old >new
 ~~~
+
+### Replace a string in all files in a folder
+
+
+~~~
+#-i = in place replacement
+# s = substitute
+# I = case insensitive
+# g = global = all string instances
+sed -i 's/PROD\./PRE\./Ig' src/*
+~~~
