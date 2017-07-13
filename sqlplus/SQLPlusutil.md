@@ -1,11 +1,9 @@
 ## Enable auto sqlplus initialization
 
 ~~~sh
-mkdir ~/sqlplus_init
-cp login.sql ~/sqlplus_init
-cat '
 export SQLPATH=~/sqlplus_init
-' >> ~/.bash_profile
+
+vi ${SQLPATH}/login.sql
 ~~~
 
 ## Setings
@@ -15,6 +13,8 @@ define _editor=vi
 set linesize 10000
  -- number of rows per page
 set pages 10000
+set serveroutput on
+set timing on
 ~~~
 
 ## call options
