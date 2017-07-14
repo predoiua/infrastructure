@@ -144,3 +144,8 @@ export TMPDIR="/media/predoiua/Data-ext/docker"
 ### Mint 18.x  (systemd)
 
 cat /lib/systemd/system/docker.service
+
+~~~
+ExecStart=/usr/bin/dockerd -H fd:// --dns 172.20.10.91 -g /media/predoiua/Data-ext/docker_ssd/docker
+~~~
+
