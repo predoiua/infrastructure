@@ -157,3 +157,10 @@ git config --global core.askPass ""
 git clean -fd
 ~~~
 
+
+## Apply modifications from branch without merge
+
+~~~
+git merge --no-commit --squash branchA
+git reset HEAD # to unstage the changes
+~~~

@@ -1,5 +1,7 @@
 
-# set
+# Useful 
+
+## set
 
 set -o # show all settings
 set +o noclobber; set -o | grep nocl
