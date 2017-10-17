@@ -1,7 +1,0 @@
-# usage
-
-~~~
-apt-get update
-dpkg -l *git*
-apt-get install git-core
-~~~

@@ -89,3 +89,9 @@ cat ~/ansible_id_rsa.pub >> ~/.ssh/authorized_keys
 # -i = identity file
 ssh-copy-id  -i ~/ansible_id_rsa.pub predoiua@172.17.0.1
 ~~~
+
+### Disconnect
+
+To disconnect a locked-up ssh session, type ~.
+For all key combinations: ~?
+
