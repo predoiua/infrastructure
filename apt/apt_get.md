@@ -1,9 +1,9 @@
 # usage
 
 ~~~
-apt-get update
-dpkg -l *git*
-apt-get install git-core
+apt-get update            # read package version
+dpkg -l *git*             # list package with name. Debian package manager
+apt-get install git-core  # install git-core
 ~~~
 
 # apt
@@ -13,3 +13,4 @@ apt-get install git-core
 ~~~
 apt search virtualbox | grep ^i        # search for installed virtual box packages
 ~~~
+

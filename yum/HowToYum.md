@@ -9,8 +9,7 @@ RPM is the package manager tool which installs the package.
 # install the latest version of a package or group of packages
 yum install <package name/s> 
 
-# update the specified packages to the latest available version.
-# if no package name/s are specified, then yum will attempt to update all installed packages.
+# update the specified packages to the latest available version.  if no package name/s are specified, then yum will attempt to update all installed packages.
 yum update <package name/s> 
 
 # determine whether any updates are available for your installed packages. yum returns a list of all package updates from all repositories if any are available.
@@ -27,6 +26,9 @@ yum search <keyword>
 
 # install a package located locally in the machine.
 yum localinstall <absolute path to package name/s> 
+
+# check if package is installe install
+yum list installed <package name/s> 
 ~~~
 
 ## Options
