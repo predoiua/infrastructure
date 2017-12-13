@@ -6,20 +6,11 @@ RPM is the package manager tool which installs the package.
 ## Usage
 
 ~~~
-# install the latest version of a package or group of packages
-yum install <package name/s> 
-
-# update the specified packages to the latest available version.  if no package name/s are specified, then yum will attempt to update all installed packages.
-yum update <package name/s> 
-
-# determine whether any updates are available for your installed packages. yum returns a list of all package updates from all repositories if any are available.
-yum check-update
-
-# remove specified packages, along with any other packages dependent on the packages being removed.
-yum remove <package name/s> 
-
-# Used to determine which packages provide a specific file or feature.
-yum provides <file name> 
+yum install <package name/s>   # install the latest version of a package or group of packages
+yum update <package name/s>    # update the specified package, no package name/s are specified = to update all installed packages.
+yum check-update               # determine whether any updates are available for your installed packages.
+yum remove <package name/s>    # remove specified packages, along with any other packages dependent on the packages being removed.
+yum provides <file name>       # Used to determine which packages provide a specific file or feature.
 
 # used to find any packages containing the specified keyword in the description, summary, packager and package name fields of RPMs in all repositories.
 yum search <keyword> 

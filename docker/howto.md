@@ -4,10 +4,7 @@
 
 ## Install
 
-
 ### Cent OS 6 
-
-See https://docs.docker.com/installation/centos/
 
 ~~~ bash
 #64 bits
@@ -20,7 +17,6 @@ sudo chkconfig docker on
 ~~~
 
 ### CentOS 7
-http://wiki.centos.org/Cloud/Docker
 
 ~~~ bash
 # start it
