@@ -10,19 +10,15 @@
 #64 bits
 su -c 'rpm -Uvh http://epel.mirror.constant.com/6/x86_64/epel-release-6-8.noarch.rpm'
 sudo yum install docker-io
-# start it
-sudo service docker start
-# start at server boot
-sudo chkconfig docker on
+sudo service docker start             # start it
+sudo chkconfig docker on              # start at server boot
 ~~~
 
 ### CentOS 7
 
 ~~~ bash
-# start it
-sudo systemctl start docker
-# start at service boot
-sudo systemctl enable docker
+sudo systemctl start docker          # start it
+sudo systemctl enable docker         # start at service boot
 ~~~
 
 ## Usefull
@@ -44,15 +40,10 @@ docker run -t -i --rm ubuntu /bin/bash
 ### Background container
 
 ~~~ bash
-# launch a container and run some task
-docker run -d ubuntu /bin/bash -c "while true; do echo hello world; sleep 1; done"
-
-# get container id
-docker ps
-# view output
-sudo docker logs angry_mccarthy
-# stop it
-sudo docker stop angry_mccarthy
+docker run -d ubuntu /bin/bash -c "while true; do echo hello world; sleep 1; done"       # launch a container and run some task
+docker ps                                                                                # get container id
+sudo docker logs angry_mccarthy                                                          # view output
+sudo docker stop angry_mccarthy                                                          # stop it
 ~~~
 
 ### Connect to a container running as demon
