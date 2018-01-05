@@ -58,3 +58,20 @@ docker save -o /tmp/fridge.tar fridge    # save image in tar
 tar -tf /tmp/fridge.tar                  # list file inside tar
 docker load -i /tmp/fridge.tar           # import image on a different machine
 ~~~
+
+## Build container
+
+- build is done by daemon, all data are send to daemon before build
+- spec file name : Dockerfile
+
+~~~
+# comment
+FROM ubuntu:15:04
+MAINTAINER i@i.com
+RUN apt-get update
+CMD ["echo","Hello World"]
+~~~
+
+~~~
+docker build -t hello:0.1 .  # -t tag . = include local folder
+~~~
