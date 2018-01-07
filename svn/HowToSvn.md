@@ -1,36 +1,25 @@
+# SVN
 
-* Useful commands
+## Useful commands
 
 ~~~sh
-# checkout a branch/trunk
-svn checkout svn://localhost/xx ~/build/xx
+svn checkout svn://localhost/xx ~/build/xx  # checkout a branch/trunk
+svn info                                    # show details about source
 
-# show details about source
-svn info
-
-# update to latest version
 cd ~/build/xx
-svn up .
-
-
-# checkout a revision
-svn up -rXXXX
-
-# view modified files
-svn status
-
-# revert local modification
-svn revert -R .
-
+svn up .                                    # update to latest version
+svn up -rXXXX                               # checkout a revision
+svn status                                  # view modified files
+svn revert -R .                             # revert local modification
 ~~~
 
-* Create new branch with Tortoise
+## Create new branch with Tortoise
 
 - Right click on trunk -> Select: Branch/Tag...
 - Select branch location : /branches/...
 Obs: Truck is not affected.
 
-* Apply a patch with Tortoise
+## Apply a patch with Tortoise
 
 - Right click on branch -> Select:Merge...
 - Click "Show log" button : select commit

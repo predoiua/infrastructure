@@ -10,7 +10,6 @@ yum install vim-enhanced
 alias vi=vim
 ~~~
 
-in vi
 
 ~~~ vi
 :color desert
