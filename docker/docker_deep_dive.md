@@ -58,3 +58,64 @@ docker save -o /tmp/fridge.tar fridge    # save image in tar
 tar -tf /tmp/fridge.tar                  # list file inside tar
 docker load -i /tmp/fridge.tar           # import image on a different machine
 ~~~
+
+## docker run
+
+~~~
+docker run -it ubuntu /bin/bash                      # -i = interactive , -t= terminal
+
+docker run -d ununtu /bin/bash -c "ping -c 8.8.8.8"  # -d detach. will run ping forever
+docker inspect container_sha                         # check details about this container
+docker attach container_sha
+~~~
+
+## multiple processes in docker
+
+- customized to look like real OS : phusion/baseimage
+
+~~~
+docker top container_sha        # show id form host os
+docker log container_sha
+~~~
+
+## volumes
+
+~~~
+docker run -it -v /test-vol --name=voltainer ubuntu /bin/bash     # create a vol in container "voltainer"
+vi /test-vol/a.txt
+# CTRL-P-Q
+docker inspect voltainer                                          # to see folder where container was created
+docker run -it --volumes-from=voltainer ubuntu /bin/bash          # mount same volume
+docker rm -v voltainer                                            # is older.. user docker volume
+~~~
+
+## networking
+
+- docker0 = more then interface. is a software switch.
+- to check it we need bridge-utile package
+- each cotainer add netlink to docker0
+
+~~~
+brctl show docker0                               # bridge control
+docker run -it ubuntu --name=net1 /bin/bash      # start a container + CTRL + P +Q
+ls -l /var/lib/docker/containers/sha             # location of host and resolv.conf for this containers
+docker run --dns=8.8.4.4 --name=dnstest ubuntu   # override DNS setting
+~~~
+
+- ports
+From Dockerfile : EXPOSE 80
+~~~
+docker run -d -p 5001:80 --name=web1 apache-img      # -d = daemon, 5001 in Linux, 80 in container
+docker port web1
+~~~
+
+- linking containers
+done using container name
+
+~~~
+docker run --name=src -d img                                  # start source cotainer
+docker run --name=rcvr --link=src:ali-src  ubuntu /bin/bash   # ali-src = alias to source container
+env | grep ALI                                                # check network in recipient
+cat /etc/hosts
+~~~
+

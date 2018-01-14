@@ -17,6 +17,11 @@ yum localinstall <absolute pack name> # install a package located locally in the
 yum list installed <package name/s>   # check if package is installe install
 ~~~
 
+~~~
+yum grouplist hidden   # list all groups of pakages
+yum groupinstall MATE Desktop
+~~~
+
 ## Options
 
 ~~~
