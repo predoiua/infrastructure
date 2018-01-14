@@ -59,6 +59,7 @@ tar -tf /tmp/fridge.tar                  # list file inside tar
 docker load -i /tmp/fridge.tar           # import image on a different machine
 ~~~
 
+<<<<<<< HEAD
 ## docker run
 
 ~~~
@@ -119,3 +120,21 @@ env | grep ALI                                                # check network in
 cat /etc/hosts
 ~~~
 
+=======
+## Build container
+
+- build is done by daemon, all data are send to daemon before build
+- spec file name : Dockerfile
+
+~~~
+# comment
+FROM ubuntu:15:04
+MAINTAINER i@i.com
+RUN apt-get update
+CMD ["echo","Hello World"]
+~~~
+
+~~~
+docker build -t hello:0.1 .  # -t tag . = include local folder
+~~~
+>>>>>>> 88e0e0a3d33c003975f64f1d352445064449e38e
