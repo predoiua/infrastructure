@@ -38,3 +38,7 @@ yum -y ...
 # in /etc/yum.repos.d
 ~~~
 
+
+~~~
+http_caching=packages        # to solve invalid repository metadata. default value = all
+~~~
