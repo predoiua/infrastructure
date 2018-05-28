@@ -28,6 +28,19 @@ rfkill help
 rfkill list all
 ~~~
 
+## Disable IPv6
+
+~~~
+vi /etc/sysctl.conf
+# add 
+# IPv6 disabled
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+sudo sysctl -p               # restart , maybe sysctl --load=/etc/sysctl.conf
+~~~
+
 ## Trackpad
 
 ~~~bash
@@ -36,16 +49,3 @@ sudo modprobe -r psmouse
 sudo modprobe psmouse proto=imps
 ~~~
 
-
-## Scripting
-
-~~~ bash
-script_name=`basename $0 .sh`
-# -z = length of string is 0
-[ -z "$var" ] && var="initial value"
-
-# regex, then after ;
-if [[ "abc" == [abc]* ]]; then
-    echo "it is true"
-fi
-~~~

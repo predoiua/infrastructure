@@ -42,4 +42,11 @@ alter session set NLS_LANGUAGE=FRENCH;
 alter session set NLS_TERRITORY=FRANCE;
 ~~~
 
+## HTML spool
 
+~~~
+SET MARKUP HTML ON SPOOL ON
+spool a.html
+select * from dual;
+SET MARKUP HTML OFF SPOOL OFF
+~~~
