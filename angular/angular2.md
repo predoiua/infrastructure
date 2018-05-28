@@ -1,5 +1,10 @@
 # Angular
 
+## sources
+
+with WebStorm
+https://www.youtube.com/watch?v=upgjCMHGpwo
+
 ## HowTo start
 
 ~~~
