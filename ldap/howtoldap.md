@@ -107,7 +107,7 @@ sudo ldapadd -Y EXTERNAL -H ldapi:/// -f ~/slapd.ldif
 See what was added:
 ~~~
 sudo ls -t1 /etc/openldap/slapd.d/cn=config/ | head -1
-~~
+~~~
 
 
 
