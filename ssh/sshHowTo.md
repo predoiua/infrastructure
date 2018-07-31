@@ -61,6 +61,40 @@ ssh -i ~/.ssh/id_rsa u@172.17.0.1
 
 ## Other
 
+### COnfig
+
+chmod 0600 ~/.ssh/config
+vi  ~/.ssh/config
+~~~
+Host vm1
+    HostName vm1
+    Port 22
+    User ansible
+    IdentityFile ~/.ssh/ansible_id_rsa
+~~~
+
+### Tunnel
+
+https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/
+
+~~~
+# -f puts ssh in background
+# -N makes it not execute a remote command
+ssh -f -N -L 9906:127.0.0.1:3306 coolio@database.example.com
+~~~
+
+This will forward all local port 9906 traffic to port 3306 on the remote database.example.com server, letting me point my desktop GUI to localhost (127.0.0.1:9906) and have it behave exactly as if I had exposed port 3306 on the remote server and connected directly to it.
+
+=
+
+Host tunnel
+    HostName database.example.com
+    IdentityFile ~/.ssh/coolio.example.key
+    LocalForward 9906 127.0.0.1:3306
+    User coolio
+
+ssh -f -N tunnel
+
 ### Secure copy file from script
 
 ~~~
