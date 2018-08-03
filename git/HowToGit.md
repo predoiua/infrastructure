@@ -1,4 +1,3 @@
-
 # Common operations
 
 ## Get rid of local modification
@@ -34,19 +33,15 @@ git checkout new_branch
 ~~~bash
 #http://stackoverflow.com/questions/424071/list-all-the-files-for-a-commit-in-git
 git diff-tree --no-commit-id --name-only -r commit_sha
-
 git show --pretty="format:" --name-only commit_sha
 ~~~
 
 ## Delete a branch
 
 ~~~bash
-#local
-git branch -d the_local_branch
-#force a local delete
-git branch -D the_local_branch
-#remote
-git push origin --delete the_remote_branch
+git branch -d the_local_branch               # local
+git branch -D the_local_branch               # force a local delete
+git push origin --delete the_remote_branch   # remote
 ~~~
 
 ## Delete a local commit
@@ -81,8 +76,7 @@ http://stackoverflow.com/questions/52704/how-do-you-discard-unstaged-changes-in-
 
 ~~~
 git checkout path/to/file/to/revert
-#For all unstaged files use:
-git checkout -- .
+git checkout -- .                        #For all unstaged files use:
 ~~~
 
 ## Get branch name
@@ -116,24 +110,19 @@ git commit --ammend
 http://stackoverflow.com/questions/1587846/how-do-i-show-the-changes-which-have-been-staged
 
 ~~~
-#working folder vs index
-git diff
-#index vs HEAD
-git diff --cached
-#HEAD vs working folder
-git diff HEAD
+git diff                  # working folder vs index
+git diff --cached         # index vs HEAD
+git diff HEAD             # HEAD vs working folder
 ~~~
 
 ## rename branch
 
 http://stackoverflow.com/questions/6591213/how-do-i-rename-the-local-branch
-
 -m is for "move" (or mv), which is how you rename files.
 
 ~~~
 git branch -m <oldname> <newname>
-#rename current branch
-git branch -m <newname>
+git branch -m <newname>                       #rename current branch
 ~~~
 
 ## get an older file
@@ -151,16 +140,20 @@ git config --global core.askPass ""
 ## Clean local untracked files/folders
 
 ~~~
-# -f = force
-# -d = include folders
-# -n = dry run
-git clean -fd
+git clean -fd                            # -f = force, -d = include folders, -n = dry run
 ~~~
 
 
 ## Apply modifications from branch without merge
 
 ~~~
-git merge --no-commit --squash branchA
-git reset HEAD # to unstage the changes
+git merge --no-commit --squash branchA   
+git reset HEAD                          # to unstage the changes
+~~~
+
+## EOL auto convert
+
+~~~
+git config --list --show-origin           | grep autocrlf
+git config --global core.autocrlf false
 ~~~
