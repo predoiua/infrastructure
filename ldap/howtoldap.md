@@ -66,7 +66,7 @@ sudo ldapmodify -Q -Y EXTERNAL -H ldapi:/// <<EOF
 dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcSuffix
-olcSuffix: dc=example,dc=com
+olcSuffix: dc=vv10,dc=com
 EOF
 
 #Root DN
@@ -74,7 +74,7 @@ sudo ldapmodify -Q -Y EXTERNAL -H ldapi:/// <<EOF
 dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcRootDN
-olcRootDN: cn=Manager,dc=example,dc=com
+olcRootDN: cn=Manager,dc=vv10,dc=com
 EOF
 
 #Password
