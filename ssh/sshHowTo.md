@@ -129,3 +129,8 @@ ssh-copy-id  -i ~/ansible_id_rsa.pub predoiua@172.17.0.1
 To disconnect a locked-up ssh session, type ~.
 For all key combinations: ~?
 
+### github
+
+~~~
+ssh -vT git@github.com     # test if public key are correctly in place.
+~~~
