@@ -134,3 +134,16 @@ For all key combinations: ~?
 ~~~
 ssh -vT git@github.com     # test if public key are correctly in place.
 ~~~
+
+
+## Remove key form known hosts
+
+~~~
+ssh-keygen -R hostname
+~~~
+
+## Force to connect with password
+
+~~~
+ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no example.com
+~~~

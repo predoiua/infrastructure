@@ -19,9 +19,11 @@ sudo ls /etc/openldap/
 
 ~~~
 sudo yum -y remove openldap-clients openldap-servers
-sudo rm -rf /etc/openldap/
+sudo rm -rf /etc/openldap/                        ## ??? not sure about certificates
+sudo rm -rf /etc/openldap/slap.d/
 sudo rm -rf /var/lib/ldap/*
 ~~~
+
 
 Start it
 ~~~
@@ -114,6 +116,11 @@ See what was added:
 sudo ls -t1 /etc/openldap/slapd.d/cn=config/ | head -1
 ~~~
 
+## Debug 
+
+~~~
+slapd -d -1 -F /etc/openldap/slapd.d
+~~~
 
 
 ## Good sources
@@ -121,3 +128,5 @@ sudo ls -t1 /etc/openldap/slapd.d/cn=config/ | head -1
 http://electron-swamp.blogspot.ro/2014/04/initializing-openldap-database-with.html
 
 http://www.zytrax.com/books/ldap/
+
+https://linuxhostsupport.com/blog/how-to-install-ldap-on-centos-7/
