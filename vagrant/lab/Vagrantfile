@@ -1,0 +1,28 @@
+Vagrant.configure("2") do |config|
+    config.vm.provision "shell", inline: "echo Hello"
+    config.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+    end
+    config.vm.define "s0" do |s0|
+        s0.vm.box = "centos/7"
+        #s0.vm.network "public_network"
+        s0.vm.network "private_network", ip: "192.168.1.1"
+        s0.vm.network "private_network", ip: "192.168.2.2"
+        s0.vm.provider "virtualbox" do |vb|
+            vb.gui = true
+            vb.memory = "1024"
+        end
+    end
+
+    config.vm.define "s1" do |s1|
+        s1.vm.box = "centos/7"
+        s1.vm.network "private_network", ip: "192.168.1.100"
+
+    end
+
+    config.vm.define "s2" do |s2|
+        s2.vm.box = "centos/7"
+        s2.vm.network "private_network", ip: "192.168.2.200"
+    end
+
+end
