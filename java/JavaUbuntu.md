@@ -1,3 +1,5 @@
+# Java 8
+
 #http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
 
 ~~~
@@ -11,3 +13,9 @@ echo "oracle-java-8-installer shared/accepted-oracle-license-v1-1 select true" |
 sudo apt-get install oracle-java8-installer
 sudo apt-get install -y oracle-java8-set-default
 ~~~
+
+
+# Java 11
+
+For Oracle Java 11, see a different PPA -> 
+https://www.linuxuprising.com/2018/10/how-to-install-oracle-java-11-in-ubuntu.html
