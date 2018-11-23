@@ -5,8 +5,9 @@ On CentOS 7.5
 
 ## Generate certificate
 
+as root
 ~~~
-yum install mod_ssl openssl
+yum install openssl
 # generate self signed certificate
 #1. Generate private key 
 openssl genrsa -out ca.key 2048 
@@ -18,22 +19,28 @@ openssl req -new -key ca.key -out ca.csr
 openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt
 
 # Copy the files to the correct locations
-sudo cp ca.crt /etc/pki/tls/certs
-sudo cp ca.key /etc/pki/tls/private/ca.key
-sudo cp ca.csr /etc/pki/tls/private/ca.csr
-
+cp ca.crt /etc/pki/tls/certs
+cp ca.key /etc/pki/tls/private/ca.key
+cp ca.csr /etc/pki/tls/private/ca.csr
 ~~~
 
 
 ~~~
-LoadModule ssl_module modules/mod_ssl.so
+yum install mod_ssl
+# vi /etc/httpd/conf/httpd.conf
 
-Listen 443
+# Redirect http to https
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}:443%{REQUEST_URI}
+
+
 <VirtualHost *:443>
-    ServerName www.example.com
-    SSLEngine on
-    SSLCertificateFile /path/to/www.example.com.cert
-    SSLCertificateKeyFile /path/to/www.example.com.key
+        SSLEngine on
+        SSLCertificateFile /etc/pki/tls/certs/ca.crt
+        SSLCertificateKeyFile /etc/pki/tls/private/ca.key
+        DocumentRoot /var/www/vhosts/yoursite.com/httpsdocs
+        ServerName yoursite.com
 </VirtualHost>
 ~~~
 
