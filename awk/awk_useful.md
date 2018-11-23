@@ -11,3 +11,10 @@ echo "1: " | awk -F  ":" '/1/ {print $1}'         # -F = field separator # /1/ l
 ~~~
 awk '{ printf "%-10s %s\n", $1, $2 }' mail-list    # %-10s = 10 char width
 ~~~
+
+## 0 pad
+
+
+~~~
+echo 18 | awk '{printf "%03d\n", $1 }'
+~~~
