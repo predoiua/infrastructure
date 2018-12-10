@@ -157,3 +157,10 @@ git reset HEAD                          # to unstage the changes
 git config --list --show-origin           | grep autocrlf
 git config --global core.autocrlf false
 ~~~
+
+## Undo last merge
+
+~~~
+git reset --hard HEAD~1              # delete last merge
+git pull --rebase origin master      # pull with rebase            
+~~~
