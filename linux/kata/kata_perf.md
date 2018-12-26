@@ -3,22 +3,18 @@
 
 ~~~ bash
 #net
-#list network interfaces
-netstat -i
-#same as
-ifconfig -s
+netstat -i   #list network interfaces
+ifconfig -s  # or,
+nmcli dev    # or,
+ip link      # or
 
-#tu = TCP and UDP statistics
-watch -n 2 "netstat tu"
+watch -n 2 "netstat -tu"   #tu = TCP and UDP statistics
 
-#c continous
-#n numeritc
-#l show only listening sockets
-#p show PID and name of program to which socket belong
-netstat -tulpnc
+netstat -tulpnc  #c=continous, n=numeric, l=only listening sockets, p=show PID and name of program to which socket belo
+
 
 lsof -i
 
-iftop -i eth0
-iftop-f "host mail.chrisbinnie.tld and not port smtp"
+iftop -i eth0            # ????
+iftop -f "host mail.chrisbinnie.tld and not port smtp"
 ~~~

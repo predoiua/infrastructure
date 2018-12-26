@@ -1,0 +1,19 @@
+---
+- name: Apache hhtpd
+  become: yes
+  yum:
+    name:
+        - httpd
+        - mod_ssl
+        - httpd-manual
+    update_cache: yes
+    state: present
+
+- name: Fetch Apache version
+  shell: httpd -v | grep version | awk '{print $3}' | cut -d/ -f2 | cut -c 1-3
+  register: httpd_version
+
+#- assert:
+#    that: 
+#      - "{{ httpd_version.stdout is version('2.4', '==') }}"
+

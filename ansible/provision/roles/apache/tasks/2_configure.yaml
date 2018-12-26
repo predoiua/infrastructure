@@ -1,0 +1,6 @@
+
+- name: HTTPD config
+  become: yes
+  template: >
+      src=../templates/httpd/httpd.conf
+      dest=/etc/httpd/conf

@@ -1,0 +1,16 @@
+
+- name: Copy certificate
+  become: yes
+  copy:
+      src: ../binary_files/ca/ca.crt
+      dest: /etc/pki/tls/certs
+      owner: root
+      mode: 644
+
+- name: Copy certificate private key
+  become: yes
+  copy:
+      src: ../binary_files/ca/ca.key
+      dest: /etc/pki/tls/private
+      owner: root
+      mode: 600

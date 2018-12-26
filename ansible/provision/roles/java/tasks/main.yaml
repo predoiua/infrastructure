@@ -1,0 +1,40 @@
+- name: Ensure wget install
+  yum:
+    name: "wget"
+    state: installed
+
+- name: Check java installation
+  stat: path={{ java_name }}
+  register: java8_installed
+
+
+- name: Download Java
+  get_url:
+    url: "{{ jdk_tarball_url }}"
+    dest: "{{ java_archive }}"
+    headers: "Cookie:' gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'"
+    validate_certs: no 
+    owner: root
+    group: root
+    mode: 744
+  when: java8_installed.stat.exists == False
+
+- name: Unpack archive
+  command: "tar -zxf {{java_archive}} -C {{download_folder}}"
+  when: java8_installed.stat.exists == False
+
+- name: Fix ownership
+  file: state=directory path={{java_name}} owner=root group=root recurse=yes
+
+# if this does not work:
+# Input this command: /usr/sbin/alternatives --config java
+# Next, follow the on-screen directions to ensure that the correct version of java is selected.
+- name: Make Java available for system
+  command: 'alternatives --install "/usr/bin/java" "java" "{{java_name}}/bin/java" 2000'
+
+- name: Make Javac available for system
+  command: 'alternatives --install "/usr/bin/javac" "javac" "{{java_name}}/bin/javac" 2000'
+
+- name: Clean up
+  file: state=absent path={{java_archive}}
+  when: java8_installed.stat.exists == False

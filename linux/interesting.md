@@ -49,3 +49,14 @@ sudo modprobe -r psmouse
 sudo modprobe psmouse proto=imps
 ~~~
 
+## DHCP Client
+
+Check if/how DHCP is configured on Debian
+
+~~~ bash
+cat /etc/network/interfaces    #Check existing interfaces and if they have dhcp
+ls -lrt /var/lib/dhcp/         #Check details : IP, lease time...
+cat /var/lib/dhcp/dhclient.eth0.leases
+~~~
+
+

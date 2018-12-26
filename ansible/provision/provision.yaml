@@ -1,0 +1,10 @@
+---
+
+- name: Provision application server
+  hosts: app_servers
+  user: ansible
+  become: True
+  roles:
+#    - role: java
+    - role: apache
+#      - role: postfix
