@@ -9,3 +9,6 @@ alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
 
+
+#ctrl-l + vi
+bind -m vi-insert "\C-l":clear-screen
