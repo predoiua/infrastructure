@@ -8,7 +8,7 @@ postconf -n   # display non-default postfix configuration
 postconf -p   # print all postfix parameters
 
 postqueue -p  # print mail queue
-postqueue -f  # ?
+postqueue -f  # flush - try to delivery all mails
 
 ~~~
 
