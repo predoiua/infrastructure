@@ -22,3 +22,6 @@ myorigin
 ~~~
 service postfix status
 ~~~
+
+
+echo "This is the body of the email" | mail -s "This is the subject line" predoiu_seli@gmail.com
