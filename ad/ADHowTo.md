@@ -59,6 +59,12 @@ S-1-1-0 = Everyone.
 
 
 
+## Registration
+create in AD "registration" user
+setspn -A HTTP/publicis@vv10.biz registration
+
+ktpass /out c:\registration.keytab /mapuser registration@vv10.biz /princ HTTP/publicis@vv10.biz /pass xxx /ptype KRB5_NT_PRINCIPAL /crypto All
+
 
 ## Alfresco
 
@@ -84,19 +90,21 @@ a. Set up the Kerberos ini file to point to the Windows domain controller.
 The default location is %WINDIR%\krb5.ini, where %WINDIR% is the location of your Windows directory, for example, C:\Windows\krb5.ini. 
 If the file does not already exist (for example, if the Kerberos libraries are not installed on the target server), you must copy these over or create them from scratch. 
 See Kerberos Help for more information on the krb5.conf file. In this example, our Windows domain controller host name is adsrv.alfresco.org.
+
 [libdefaults]
 default_realm = VV10.BIZ
-default_tkt_enctypes = rc4-hmac
-default_tgs_enctypes = rc4-hmac 
 
 [realms]
 VV10.BIZ = {
-kdc = srpafinf0011.insim.biz
-kdc = srpafinf0012.insim.biz
-admin_server = srpafinf0011.insim.biz
+	kdc = srpafinf0011.insim.biz
+	kdc = srpafinf0012.insim.biz
+	admin_server = srpafinf0011.insim.biz
 }
 [domain_realm]
 app1.vv10.biz = VV10.BIZ
 .app1.vv10.biz = VV10.BIZ
 
 Note:Specify the realm in uppercase.
+
+
+https://support.microsoft.com/en-us/help/303650/intranet-site-is-identified-as-an-internet-site-when-you-use-an-fqdn-o
