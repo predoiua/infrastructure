@@ -181,6 +181,7 @@ done < <(sqlplus -s scott/tiger << FIN
     set head off;
     set newpage none;
     set feedback off;
+    set linesize 1000;
     select sysdate s, 'a' a, 'b' from all_objects where rownum < 5;
     exit;
 FIN
