@@ -5,6 +5,19 @@
 
 ## Python 3
 
+
+~~~
+yum install openssl-devel
+yum-builddep python
+
+wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tar.xz
+cd Python-3.4.7
+./configure --enable-optimizations --prefix=/home/predoiua/python3
+make install
+
+make altinstall # instructs your system to create a second installation of this version of Python.
+~~~
+
 https://linuxize.com/post/how-to-install-python-3-on-centos-7/
 
 ~~~

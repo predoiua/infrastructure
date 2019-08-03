@@ -11,6 +11,7 @@ info - cyan -light blue
 dark
 white
 transparent
+light
 eg: bg-primary
 
 ## Containter and rows
@@ -60,3 +61,16 @@ max-width: 575.98px - xtra-SM
 </div>
 </div>
 </form>
+
+# Typography
+
+class : 
+- h1 to h6
+- text-lowercase, text-capitalized
+- mt-5 = margin top 5
+- p-3 = padding 3
+- text-muted, text-center
+- lead = for <p> to emphasize it
+other:
+- &9632; - square with color
+- &ldquo; &rdquo; &rsquo;

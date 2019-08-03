@@ -13,6 +13,8 @@ nvm ls-remote
 #Take the latest 
 nvm install v5.6.0
 nvm use !$
+# Auto install latest
+nvm install --lts    # lts = long time support
 ~~~
 
 ## Grunt, Brunch
