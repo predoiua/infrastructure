@@ -12,6 +12,7 @@ https://github.com/creationix/nvm
 ~~~
 nvm ls-remote              # check existing version
 nvm install v...           # install versin
+nvm install --lts          # instal LTS = long time support version
 nvm use v..                # activate version
 nvm alias devault v....    # set default version
 

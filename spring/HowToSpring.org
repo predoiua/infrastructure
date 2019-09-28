@@ -4,7 +4,7 @@
 ## Spring boot
 
 ~~~
-run
+#run
 mvn spring-boot:run
 #is same as:
 mvn package
