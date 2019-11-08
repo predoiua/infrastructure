@@ -1,6 +1,14 @@
 
 # Spring
 
+## Nice
+
+~~~
+curl -s get.sdkman.io | bash
+sdk ls springboot
+sdk install springboot
+~~~
+
 ## Spring boot
 
 ~~~
@@ -9,4 +17,16 @@ mvn spring-boot:run
 #is same as:
 mvn package
 java -jar target/xxx.jar
+~~~
+
+## Pro Spring
+
+~~~
+spring shell
+
+spring init --build gradle myapp
+./gradlew bootRun
+
+spring init -dweb,data-jpa,h2,freemarker,security --package-name=com.vv10.spring --build maven vv10app --force # force = override existing folder.
+./mvnw spring-boot:run
 ~~~
