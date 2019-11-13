@@ -5,10 +5,10 @@ sudo yum -y update
 # CentOS 6
 #sudo yum -y groupinstall "Desktop" "Desktop Platform" "X Window System" "Fonts"
 # CentOS 7
-yum groupinstall "GNOME Desktop" "Graphical Administration Tools"
+yum install -y epel-release
+yum group install -y "MATE Desktop"
+# "Graphical Administration Tools"
 
 #install chrome
-sudo wget http://chrome.richardlloyd.org.uk/install_chrome.sh
-sudo chmod u+x install_chrome.sh
-sudo ./install_chrome.sh -f
+sudo yum install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
