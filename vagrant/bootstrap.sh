@@ -5,8 +5,9 @@ sudo yum -y update
 # CentOS 6
 #sudo yum -y groupinstall "Desktop" "Desktop Platform" "X Window System" "Fonts"
 # CentOS 7
-yum install -y epel-release
-yum group install -y "MATE Desktop"
+sudo yum install -y epel-release
+sudo yum groupinstall -y "Server with GUI" -y
+sudo yum group install -y "MATE Desktop"
 # "Graphical Administration Tools"
 
 #install chrome
