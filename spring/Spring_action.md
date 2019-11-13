@@ -1,0 +1,2 @@
+
+https://start.spring.io/starter.zip?name=demo&groupId=com.example&artifactId=vv10demo&version=0.0.1-SNAPSHOT&description=Demo+project+for+Spring+Boot&packageName=com.vv10.demo&type=maven-project&packaging=jar&javaVersion=1.8&language=java&bootVersion=2.2.0.RELEASE&dependencies=configuration-processor&dependencies=lombok&dependencies=devtools&dependencies=actuator&dependencies=mybatis&dependencies=h2&dependencies=security&dependencies=oauth2-resource-server&dependencies=oauth2-client
