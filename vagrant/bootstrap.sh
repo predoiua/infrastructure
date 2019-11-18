@@ -6,7 +6,8 @@ sudo yum -y update
 #sudo yum -y groupinstall "Desktop" "Desktop Platform" "X Window System" "Fonts"
 # CentOS 7
 sudo yum install -y epel-release
-sudo yum groupinstall -y "Server with GUI" -y
+sudo yum update
+#sudo yum groupinstall -y "Server with GUI"
 sudo yum group install -y "MATE Desktop"
 # "Graphical Administration Tools"
 
