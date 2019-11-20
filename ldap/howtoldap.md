@@ -2,7 +2,7 @@
 # Open LDAP
 
 
-This tutorial is for Open LDAP 2.4.50 on Cent OS 6.6/7.1/
+This tutorial is for Open LDAP 2.4.50 on CentOS 7
 Configuration method used :
 RTC method (Real Time Configuration) = the cn=config method
 
@@ -28,9 +28,6 @@ sudo rm -rf /var/lib/ldap/*
 Start it
 ~~~
 sudo systemctl start slapd.service
-#or
-sudo service slapd stop
-sudo service slapd start
 ~~~
 
 Test to see if is running
@@ -50,7 +47,7 @@ sudo ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
 
 -  one of the databases is the configuration database itself. 
 it is cn=config () That is: Common Name = "config" )
-- Database configuration objects have the objectClass: olcDatabase. 
+- Database configuration objects have the objectClass: olcDatabase.
 - the user databases are indicated by the data storage back end (bdb|hdb)
 
 ~~~
@@ -61,6 +58,7 @@ sudo ldapsearch -Q -Y EXTERNAL -H ldapi:/// -LLL -b cn=config 'olcDatabase={2}hd
 ~~~
 
 ## Version 1
+Recommended - with ldapmodify
 
 ~~~
 #Set the Database Suffix
@@ -89,7 +87,7 @@ EOF
 ~~~
 
 ## Version 2
-
+don't. modify files
 Configure it
 
 ~~~
