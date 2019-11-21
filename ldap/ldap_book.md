@@ -7,7 +7,7 @@ by Antonio Vazquez
 ### 11.1. Installing OpenLDAP
 
 ~~~
-yum install openldap openldap-servers openldap-clients
+yum install -y openldap openldap-servers openldap-clients
 systemctl enable slapd  # result in -> ln -s '/usr/lib/systemd/system/slapd.service' '/etc/systemd/system/multi-user.target.wants/slapd.service'
 systemctl start slapd
 ~~~
@@ -42,8 +42,11 @@ and add entry to store the admin’s password (olcRootPW).
 
 ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config olcDatabase=\*      # query for config DB
 
-# create modification lddif
+# create modification ldif
+
 ~~~
+PW=$(slappasswd)
+
 ldapmodify -Y EXTERNAL -H ldapi:/// <<FIN
 dn: olcDatabase={2}hdb,cn=config
 changeType: modify
@@ -58,7 +61,7 @@ ldapmodify -Y EXTERNAL -H ldapi:/// <<FIN
 dn: olcDatabase={2}hdb,cn=config
 changeType: modify
 add: olcRootPW
-olcRootPW: {SSHA}hV5qwvSqnmsTxH5MpRBuzjouo1lapCmE
+olcRootPW: ${PW}
 FIN
 ~~~
 
@@ -120,7 +123,7 @@ cp /etc/pki/CA/certs/ldap.vv10.local.crt /etc/openldap/certs/
 cp /etc/pki/CA/certs/ca.cert.pem /etc/openldap/cacerts/
 
 
-slapcat -b "cn=config"            # check default TLS related attributes
+slapcat -b "cn=schema,cn=config"            # check default TLS related attributes
 
 
 ldapmodify -Y EXTERNAL -H ldapi:/// <<FIN
@@ -128,20 +131,22 @@ dn: cn=config
 changetype: modify
 replace: olcTLSCertificateFile
 olcTLSCertificateFile: /etc/openldap/certs/ldap.vv10.local.crt
-FIN
 -
 replace: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /etc/openldap/certs/ldap.vv10.local.key
 -
+add: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/openldap/cacerts/ca.cert.pem
+-
 replace: olcTLSCACertificatePath
-olcTLSCACertificatePath: /etc/openldap/cacerts/ca.cert.pem
+olcTLSCACertificatePath: /etc/openldap/cacerts
 FIN
 ~~~
 
+vi /etc/sysconfig/slapd
+SLAPD_URLS="ldapi:/// ldap:/// ldaps:///"
 
-ldapmodify -Y EXTERNAL -H ldapi:/// <<FIN
-dn: cn=config
-changetype: modify
-replace: olcTLSCACertificatePath
-olcTLSCACertificatePath: /etc/openldap/cacerts/ca.cert.pem
-FIN
+~~~
+systemctl restart slapd
+ldapsearch -x -ZZ         # -ZZ = ldaps, -x simple authentication
+~~~
