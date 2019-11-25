@@ -1,3 +1,12 @@
+# General
+
+vagrant ssh.
+https://stackoverflow.com/questions/10864372/how-to-ssh-to-vagrant-without-actually-running-vagrant-ssh
+
+~~~
+HOST=name-of-my-host
+ssh $(vagrant ssh-config $HOST | sed '/^[[:space:]]*$/d' |  awk 'NR>1 {print " -o "$1"="$2}') localhost
+~~~
 
 # Install minimal Centos 7 with GUI
 

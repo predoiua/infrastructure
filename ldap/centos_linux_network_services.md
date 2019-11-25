@@ -45,7 +45,7 @@ ldapsearch -Y EXTERNAL -H ldapi:/// -b cn=config olcDatabase=\*      # query for
 # create modification ldif
 
 ~~~
-PW=$(slappasswd)
+PW=$(slappasswd -s pass)
 
 ldapmodify -Y EXTERNAL -H ldapi:/// <<FIN
 dn: olcDatabase={2}hdb,cn=config
@@ -113,8 +113,6 @@ openssl verify -CAfile certs/ca.cert.pem certs/ldap.vv10.local.crt
 CentOS 7 specific
 
 ~~~
-/etc/pki/CA/certs/ldap.vv10.local.crt
-
 mkdir -p /etc/openldap/certs/
 mkdir -p /etc/openldap/cacerts/
 
@@ -141,6 +139,8 @@ olcTLSCACertificateFile: /etc/openldap/cacerts/ca.cert.pem
 replace: olcTLSCACertificatePath
 olcTLSCACertificatePath: /etc/openldap/cacerts
 FIN
+
+cat /etc/openldap/slapd.d/cn\=config.ldif
 ~~~
 
 vi /etc/sysconfig/slapd
@@ -148,5 +148,14 @@ SLAPD_URLS="ldapi:/// ldap:/// ldaps:///"
 
 ~~~
 systemctl restart slapd
+
+vi /etc/openldap/ldap.conf               # check path to cacerts
+cacertdir_rehash /etc/openldap/cacerts/  # create link to cert. view with next cmd
+ls -la /etc/openldap/cacerts/
+vi /etc/hosts                            # add ldap.vv10.com 
+
 ldapsearch -x -ZZ         # -ZZ = ldaps, -x simple authentication
+ldapsearch -x -H ldaps://ldap.vv10.com -b dc=vv10,dc=com
+ldapsearch -x -H ldaps:/// -b "dc=vv10,dc=com" "(cn=Tux)"      # after add user form ldap.sh
+
 ~~~
