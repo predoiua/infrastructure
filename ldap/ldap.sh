@@ -48,7 +48,7 @@ changeType: modify
 add: olcRootPW
 olcRootPW: ${PW}
 FIN
-cat /etc/openldap/slapd.d/cn\=config/olcDatabase\=\{2\}hdb.ldif 
+cat /etc/openldap/slapd.d/cn\=config/olcDatabase\=\{2\}hdb.ldif
 
 ldapmodify -Y EXTERNAL -H ldapi:/// <<FIN
 dn: olcDatabase={1}monitor,cn=config
@@ -61,6 +61,75 @@ olcAccess: {0} to *
 FIN
 cat /etc/openldap/slapd.d/cn\=config/olcDatabase\=\{1\}monitor.ldif
 
+}
+
+function init_ca() {
+  hostnamectl set-hostname ldap.vv10.com
+
+  yum info openssl           # check if is installed
+  cd /etc/pki/CA/            # if it is, this folder exists
+  touch index.txt            # to keep track of issued certificates
+  echo 0001 >serial
+
+  openssl genrsa -aes256 -out /etc/pki/CA/private/ca.key.pem
+  openssl req -new -x509 -days 3650 -key /etc/pki/CA/private/ca.key.pem -extensions v3_ca -out /etc/pki/CA/certs/ca.cert.pem
+
+  #generate the key and certificate files to use with openldap.
+  # common name = hostname
+  openssl genrsa -out private/ldap.vv10.local.key
+  openssl req -new -key private/ldap.vv10.local.key -out certs/ldap.vv10.local.csr
+
+  # sign it
+  openssl ca -keyfile private/ca.key.pem -cert certs/ca.cert.pem -in certs/ldap.vv10.local.csr -out certs/ldap.vv10.local.crt
+
+  # openssl config file
+  more /etc/pki/tls/openssl.cnf  # set here default values for country, location...
+  openssl verify -CAfile certs/ca.cert.pem certs/ldap.vv10.local.crt
+}
+
+function init_ldaps() {
+  mkdir -p /etc/openldap/certs/
+  mkdir -p /etc/openldap/cacerts/
+
+  cp /etc/pki/CA/private/ldap.vv10.local.key /etc/openldap/certs/
+  cp /etc/pki/CA/certs/ldap.vv10.local.crt /etc/openldap/certs/
+  cp /etc/pki/CA/certs/ca.cert.pem /etc/openldap/cacerts/
+
+
+  slapcat -b "cn=schema,cn=config"            # check default TLS related attributes
+
+
+ldapmodify -Y EXTERNAL -H ldapi:/// <<FIN
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/openldap/certs/ldap.vv10.local.crt
+-
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/openldap/certs/ldap.vv10.local.key
+-
+add: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/openldap/cacerts/ca.cert.pem
+-
+replace: olcTLSCACertificatePath
+olcTLSCACertificatePath: /etc/openldap/cacerts
+FIN
+
+cat /etc/openldap/slapd.d/cn\=config.ldif
+
+
+#vi /etc/sysconfig/slapd
+#SLAPD_URLS="ldapi:/// ldap:/// ldaps:///"
+systemctl restart slapd
+}
+
+function test_slapd() {
+  ldapsearch -x -H ldaps://localhost:636 -b "dc=vv10,dc=com" "(objectClass=*)" 
+
+  ldapsearch -H ldaps://localhost:636 -D "cn=admin,dc=vv10,dc=com" -w "pass" -b "dc=vv10,dc=com" "(objectClass=*)"
+
+  openssl s_client -connect localhost:636
+  openssl x509 -in /etc/pki/CA/certs/ldap.vv10.local.crt -noout -text
 }
 
 function populate() {
