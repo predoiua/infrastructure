@@ -19,7 +19,14 @@ function force_remove() {
 }
 
 
+function config_host() {
+  hostnamectl set-hostname ldap.vv10.com
+  echo "127.0.0.1   ldap ldap.vv10 ldap.vv10.com" >>/etc/hosts
+  ping -c 1 ldap.vv10.com
+}
+
 function install_ldap() {
+
     yum -y install openldap openldap-clients openldap-servers
     systemctl enable slapd
     systemctl start slapd
@@ -64,7 +71,6 @@ cat /etc/openldap/slapd.d/cn\=config/olcDatabase\=\{1\}monitor.ldif
 }
 
 function init_ca() {
-  hostnamectl set-hostname ldap.vv10.com
 
   yum info openssl           # check if is installed
   cd /etc/pki/CA/            # if it is, this folder exists
@@ -83,8 +89,11 @@ function init_ca() {
   openssl ca -keyfile private/ca.key.pem -cert certs/ca.cert.pem -in certs/ldap.vv10.local.csr -out certs/ldap.vv10.local.crt
 
   # openssl config file
-  more /etc/pki/tls/openssl.cnf  # set here default values for country, location...
-  openssl verify -CAfile certs/ca.cert.pem certs/ldap.vv10.local.crt
+  #more /etc/pki/tls/openssl.cnf  # set here default values for country, location...
+  #openssl verify -CAfile certs/ca.cert.pem certs/ldap.vv10.local.crt 
+  #openssl verify -CAfile certs/ca.cert.pem certs/ca.cert.pem
+  #openssl x509 -in certs/ca.cert.pem -text
+  #openssl x509 -in certs/ldap.vv10.local.crt  -text
 }
 
 function init_ldaps() {
@@ -95,6 +104,10 @@ function init_ldaps() {
   cp /etc/pki/CA/certs/ldap.vv10.local.crt /etc/openldap/certs/
   cp /etc/pki/CA/certs/ca.cert.pem /etc/openldap/cacerts/
 
+# !! Re-hash . without it is not recognized
+  cacertdir_rehash /etc/openldap/cacerts/
+ # cp /etc/pki/CA/certs/ca.cert.pem /etc/pki/ca-trust/source/anchors/ 
+ # update-ca-trust
 
   slapcat -b "cn=schema,cn=config"            # check default TLS related attributes
 
@@ -124,12 +137,15 @@ systemctl restart slapd
 }
 
 function test_slapd() {
-  ldapsearch -x -H ldaps://localhost:636 -b "dc=vv10,dc=com" "(objectClass=*)" 
-
-  ldapsearch -H ldaps://localhost:636 -D "cn=admin,dc=vv10,dc=com" -w "pass" -b "dc=vv10,dc=com" "(objectClass=*)"
 
   openssl s_client -connect localhost:636
+  ldapsearch -x -ZZ
   openssl x509 -in /etc/pki/CA/certs/ldap.vv10.local.crt -noout -text
+  ldapsearch -x -H ldaps://ldap.vv10.com:636 -b "dc=vv10,dc=com" "(objectClass=*)" 
+
+  ldapsearch -H ldaps://ldap.vv10.com:636 -D "cn=admin,dc=vv10,dc=com" -w "pass" -b "dc=vv10,dc=com" "(objectClass=*)"
+
+  ldapsearch -H ldaps://ldap.vv10.com:636 -D "cn=Tux,ou=users,dc=vv10,dc=com" -w "linuxrules" -b "dc=vv10,dc=com" "(objectClass=*)"
 }
 
 function populate() {
@@ -143,7 +159,7 @@ FIN
 
 ## Adding an Organizational Unit (OU)
 
-ldapadd -H ldaps:/// -D cn=admin,dc=vv10,dc=com -w pass <<FIN
+ldapadd -H ldapi:/// -D cn=admin,dc=vv10,dc=com -w pass <<FIN
 dn: ou=users,dc=vv10,dc=com
 objectClass: organizationalUnit
 ou: users
@@ -154,7 +170,7 @@ FIN
 ldapadd -Y EXTERNAL -H ldapi:// -f /etc/openldap/schema/cosine.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
 
-ldapadd -x -H ldaps:/// -D cn=admin,dc=vv10,dc=com -w pass <<FIN
+ldapadd -x -H ldapi:/// -D cn=admin,dc=vv10,dc=com -w pass <<FIN
 dn: cn=Tux,ou=users,dc=vv10,dc=com
 cn: Tux
 sn: Tuxon
@@ -163,14 +179,46 @@ userPassword: linuxrules
 uid: Tux
 FIN
 
+ldapadd -x -H ldapi:/// -D cn=admin,dc=vv10,dc=com -w pass <<FIN
+dn: cn=u1,ou=users,dc=vv10,dc=com
+cn: u1
+sn: u1
+objectClass: inetOrgPerson
+userPassword: u1
+uid: u1
+FIN
+
+ldapadd -x -H ldapi:/// -D cn=admin,dc=vv10,dc=com -w pass <<FIN
+dn: cn=u2,ou=users,dc=vv10,dc=com
+cn: u2
+sn: u2
+objectClass: inetOrgPerson
+userPassword: u2
+uid: u2
+FIN
+
+
 slapcat -b "cn=schema,cn=config"
 
 ## Adding a group
 
-ldapadd -H ldaps:/// -x -D cn=admin,dc=vv10,dc=com -w pass <<FIN
+ldapadd -H ldapi:/// -x -D cn=admin,dc=vv10,dc=com -w pass <<FIN
 dn: cn=bi, ou=users, dc=vv10, dc=com
 cn: bi
 objectClass: groupOfNames
 member: cn=Tux, ou=users, dc=vv10, dc=com
+member: cn=u1, ou=users, dc=vv10, dc=com
+member: cn=u2, ou=users, dc=vv10, dc=com
 FIN
+
+#ldapmodify -Y EXTERNAL -H ldapi:/// <<FIN
+#dn: cn=bi, ou=users, dc=vv10, dc=com
+#changetype: modify
+#replace: dn: cn=bi, ou=users, dc=vv10, dc=com
+#cn: bi
+#objectClass: groupOfNames
+#member: cn=Tux, ou=users, dc=vv10, dc=com
+#member: cn=u1, ou=users, dc=vv10, dc=com
+#member: cn=u2, ou=users, dc=vv10, dc=com
+#FIN
 }
