@@ -1,0 +1,32 @@
+
+Vagrant.configure("2") do |config|
+    config.vm.provider "virtualbox" do |vb|
+        vb.gui = true
+        vb.memory = "2048"
+    end
+    config.vm.define "control" do |control|
+        control.vm.box = "centos/8"
+        control.vm.hostname = "control.example.com"
+#        control.vm.network "public_network"
+        control.vm.network "private_network", ip: "192.168.4.200", virtualbox__intnet: "ex_ansibe" 
+#        control.vm.provider "virtualbox" do |vb|
+#            vb.gui = true
+#            vb.memory = "1024"
+#        end
+    end
+
+    config.vm.define "ansible1" do |ansible1|
+        ansible1.vm.box = "centos/8"
+        ansible1.vm.hostname = "ansible1.example.com"
+        ansible1.vm.network "private_network", ip: "192.168.4.201", virtualbox__intnet: "ex_ansibe"
+#        ansible1.vm.network "public_network", auto_config: false
+    end
+
+    config.vm.define "ansible2" do |ansible2|
+        ansible2.vm.box = "centos/7"
+        ansible2.vm.hostname = "ansible2.vv10"
+        ansible2.vm.network "private_network", ip: "192.168.4.202", virtualbox__intnet: "ex_ansibe"
+#        ansible2.vm.network "public_network", auto_config: false
+    end
+
+end
