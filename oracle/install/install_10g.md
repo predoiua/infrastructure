@@ -175,52 +175,35 @@ dbca
 ### Check
 
 ~~~bash
-#RAM > 2G
-grep MemTotal /proc/meminfo 
-#Architecture
-uname -m
-#Check Swap size
-grep SwapTotal /proc/meminfo
-#Free memory
-free
-#Check shared memory
-df -h /dev/shm/
-#Architecture
-uname -m
-# > 1G in tmp
-df -h /tmp
-#check TMP and TMPDIR variables
-echo "$TMP and $TMPDIR"
-#OS version
-cat /proc/version
-# OS version > 2.6.18 or later
-uname -r
-# Check required packages
-# rpm -q package_name
+grep MemTotal /proc/meminfo      #RAM > 2G
+uname -m                         #Architecture
+grep SwapTotal /proc/meminfo     #Check Swap size 
+free                             #Free memory
+df -h /dev/shm/                  #Check shared memory
+df -h /tmp                       # > 1G in tmp
+echo "$TMP and $TMPDIR"          #check TMP and TMPDIR variables
+cat /proc/version                #OS version
+uname -r                         # OS version > 2.6.18 or later
+# rpm -q package_name   # Check required packages
 ~~~~
 
 ### Users and groups
 
 ~~~bash
-#The Oracle Inventory group (typically, oinstall)
-more /etc/oraInst.loc
-#The OSDBA group (typically, dba)
-grep dba /etc/group
+more /etc/oraInst.loc      #The Oracle Inventory group (typically, oinstall)
+grep dba /etc/group        #The OSDBA group (typically, dba)
 #The Oracle software owner (typically, oracle)
 #The OSOPER group (optional. Typically, oper)
 # Check oracle urer. Expect something like:
 # uid=440(oracle) gid=200(oinstall) groups=201(dba),202(oper)
-id oracle
-#usermod -g oinstall -G dba oracle
+id oracle                  #usermod -g oinstall -G dba oracle
 ~~~
 
 ### Others
 
 ~~~bash
-# Check semaphores
-/sbin/sysctl -a
+/sbin/sysctl -a           # Check semaphores
 cat /etc/sysctl.conf
 
-# Mouted FS
-df -k
+df -k                    # Mouted FS
 ~~~

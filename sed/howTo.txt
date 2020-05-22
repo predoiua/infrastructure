@@ -31,3 +31,10 @@ sed 's:/usr/local/bin:/common/bin:' <old >new
 # g = global = all string instances
 sed -i 's/PROD\./PRE\./Ig' src/*
 ~~~
+
+## Remove multispace, comment at the end
+
+~~~
+# ( ) define a group that can be access with name \1 ... \x
+echo "    i     2 -- si" | sed 's/\( \)\+/ /g' | sed 's/^\(.*\)\(--\)\(.*\)/\1/g'
+~~

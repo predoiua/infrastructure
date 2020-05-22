@@ -192,3 +192,9 @@ http://stackoverflow.com/questions/2287440/how-to-do-case-insensitive-search-in-
 #or: case insensive per individual search
 /Copyright\c
 ~~~
+
+## yaml seeting
+
+~~~
+autocmd FileType yaml setlocal ai ts=2 sw=2 et
+~~~
