@@ -5,7 +5,16 @@
 
 ## Python 3
 
+### Venv
 
+~~~
+python3 -m venv bo
+source bo/bin/activate
+
+deactivate
+~~~
+
+### Alternative install
 ~~~
 yum install openssl-devel
 yum-builddep python
@@ -24,8 +33,6 @@ https://linuxize.com/post/how-to-install-python-3-on-centos-7/
 sudo yum install centos-release-scl
 sudo yum install rh-python36
 scl enable rh-python36 bash
-python -m venv my_project_venv
-source my_project_venv/bin/activate
 ~~~
 
 ## Python 2
