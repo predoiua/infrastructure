@@ -1,7 +1,7 @@
 
 # HowTo
 
-## Add local disk
+## 1. Add local disk
 
 ~~~
 fdisk -l            # find new disk
@@ -43,7 +43,7 @@ Datacentre > pve > local-lvm > Summary
 Q: how to find file system type in a "logical volume"
 A: blkid and lvdisplay
 
-## 2. Add iso boot disk
+## 4. Add iso boot disk
 
 pve takes boot images from "templates/iso" folder from Storage with content "ISO image"
 
