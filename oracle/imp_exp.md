@@ -13,6 +13,8 @@ categories: oracle
 ~~~sql
 =========== check users to export ====
 select username from all_users;
+select DIRECTORY_NAME, DIRECTORY_PATH from all_directories;
+
 =========== check data file location ======
 SELECT  FILE_NAME FROM DBA_DATA_FILES;
 =========== check tablespaces ======

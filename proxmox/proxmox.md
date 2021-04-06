@@ -58,3 +58,14 @@ ln -s ../xx.iso xx.iso
 xfs_info /
 xfs_growfs /
 ~~~
+
+# Cluster
+
+~~~
+pvecm status     # cluster status
+pvecm nodes      # show nodes
+pvecm delnode pve1   # delete node pve1. remove node from configuration. Must be power off ?
+rm -rf /etc/pve/nodes/pve1  # delete physical info
+
+reboot
+~~~
