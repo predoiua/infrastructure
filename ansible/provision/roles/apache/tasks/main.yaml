@@ -1,8 +1,0 @@
----
-
-- include: 1_package.yaml
-- include: 2_configure.yaml
-- include: 2_configure_ssl.yaml
-- include: 3_os_conf.yaml
-- include: 4_enable.yaml
-
