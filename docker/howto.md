@@ -4,24 +4,32 @@
 
 ## Install
 
-### Cent OS 6 
-
-~~~ bash
-#64 bits
-su -c 'rpm -Uvh http://epel.mirror.constant.com/6/x86_64/epel-release-6-8.noarch.rpm'
-sudo yum install docker-io
-sudo service docker start             # start it
-sudo chkconfig docker on              # start at server boot
+### Alma 9 - using CentOS repo
+~~~
+# set up repository
+yum install -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+# install
+yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# enable
+systemctl enable --now docker.service
+systemctl enable --now containerd.service
 ~~~
 
 ### CentOS 7
 
 ~~~ bash
-sudo systemctl start docker          # start it
-sudo systemctl enable docker         # start at service boot
+systemctl start docker          # start it
+systemctl enable docker         # start at service boot
 ~~~
 
 ## Usefull
+
+### Allow user to use docker
+~~~
+usermod -aG docker $USER    # add user to "docker" group
+newgrp docker               # activate the change
+~~~
 
 ### Remove old contains
 
@@ -42,8 +50,8 @@ docker run -t -i --rm ubuntu /bin/bash
 ~~~ bash
 docker run -d ubuntu /bin/bash -c "while true; do echo hello world; sleep 1; done"       # launch a container and run some task
 docker ps                                                                                # get container id
-sudo docker logs angry_mccarthy                                                          # view output
-sudo docker stop angry_mccarthy                                                          # stop it
+docker logs angry_mccarthy                                                          # view output
+docker stop angry_mccarthy                                                          # stop it
 ~~~
 
 ### Connect to a container running as demon
@@ -103,38 +111,4 @@ docker save -o <save image to path> <image name>
 docker load -i <path to image tar file>
 ~~~
 
-
-### Mint 17.x
-
-
-cat /etc/default/docker
-
-~~~
-# Docker Upstart and SysVinit configuration file
-
-# Customize location of Docker binary (especially for development testing).
-#DOCKER="/usr/local/bin/docker"
-
-# Use DOCKER_OPTS to modify the daemon startup options.
-#DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4"
-#DOCKER_OPTS="-g /media/predoiua/Data-ext1/docker"
-#DOCKER_OPTS="-g /media/predoiua/Data-ext/docker_ssd/docker"
-DOCKER_OPTS="--dns 172.20.10.91 -g /media/predoiua/Data-ext/docker_ssd/docker"
-
-
-# If you need Docker to use an HTTP proxy, it can also be specified here.
-#export http_proxy="http://127.0.0.1:3128/"
-
-# This is also a handy place to tweak where Docker's temporary files go.
-#export TMPDIR="/mnt/bigdrive/docker-tmp"
-export TMPDIR="/media/predoiua/Data-ext/docker"
-~~~
-
-### Mint 18.x  (systemd)
-
-cat /lib/systemd/system/docker.service
-
-~~~
-ExecStart=/usr/bin/dockerd -H fd:// --dns 172.20.10.91 -g /media/predoiua/Data-ext/docker_ssd/docker
-~~~
 
