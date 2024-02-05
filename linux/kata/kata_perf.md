@@ -1,5 +1,5 @@
 
-## 1. Real­Time Network Statistics
+## 1. Real Time Network Statistics
 
 ~~~ bash
 #net

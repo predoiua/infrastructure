@@ -17,8 +17,22 @@ systemctl enable --now containerd.service
 ~~~
 
 ### CentOS 7
+https://docs.docker.com/engine/install/centos/
 
 ~~~ bash
+# remove old version
+yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+yum install -y yum-utils
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
 systemctl start docker          # start it
 systemctl enable docker         # start at service boot
 ~~~
@@ -27,6 +41,7 @@ systemctl enable docker         # start at service boot
 
 ### Allow user to use docker
 ~~~
+groupadd docker
 usermod -aG docker $USER    # add user to "docker" group
 newgrp docker               # activate the change
 ~~~

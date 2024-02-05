@@ -147,3 +147,14 @@ ssh-keygen -R hostname
 ~~~
 ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no example.com
 ~~~
+
+## ssh-agent
+
+env variables:
+SSH_AUTH_SOCK=/tmp/ssh-AIKJniK2zVwp/agent.248
+SSH_AGENT_PID=249
+
+~~~
+eval $(ssh-agent) # will set the 2 env variables
+ssh-add
+~~~

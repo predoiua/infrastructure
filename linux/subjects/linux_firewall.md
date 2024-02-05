@@ -1,7 +1,7 @@
 
 netfilter = kernel filtering subsystem.
 To interact with netfilter = write kernel module or use other programs ( eg. iptables )
-iptables only for IPv4. ip6tales, ebtables for soft briges
+iptables only for IPv4. ip6tales, ebtables for soft bridges
 
 firewalld interface to iptables ( rhel 7) or nftables ( rhel 8 ).
 
