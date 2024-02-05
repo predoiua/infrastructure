@@ -16,6 +16,15 @@ systemctl enable --now docker.service
 systemctl enable --now containerd.service
 ~~~
 
+### Alma 8 - using CentOS repo
+Step 1: Remove podman
+~~~
+yum remove buildah skopeo podman containers-common atomic-registries docker container-tools
+rm -rf /etc/containers/* /var/lib/containers/* /etc/docker /etc/subuid* /etc/subgid*
+cd ~ && rm -rf /.local/share/containers/
+~~~
+Step 2: same as Alma 9
+
 ### CentOS 7
 https://docs.docker.com/engine/install/centos/
 
