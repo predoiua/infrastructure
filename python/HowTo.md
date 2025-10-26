@@ -12,7 +12,6 @@ python -m unittest discover -s tests -p "test_*.py"
 
 ~~~
 python3 -m http.server 9000
-python  -m SimpleHTTPServer 9000  # python2
 ~~~
 
 # Green/Blue deploy
