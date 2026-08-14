@@ -1,5 +1,7 @@
 
+export LLAMA_BASE_URL=http://rtx3090:8888
+export LLAMA_API_KEY=
+pi
 
-
-curl http://127.0.0.1:8080/health
-curl http://127.0.0.1:8080/models
+curl http://rtx3090:8888/health
+curl http://rtx3090:8888/models
