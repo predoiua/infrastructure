@@ -1,0 +1,1 @@
+mkdir -p .pi/skills/teach .pi/extensions .pi/subagents assets
